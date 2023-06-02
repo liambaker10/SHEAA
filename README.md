@@ -1,6 +1,6 @@
 # Innovate-Eval-chatGPT
-Basic Structure of NN for LLM:
-    1. Transformer Encoder: The core of the model is typically based on a transformer encoder, which is a deep neural network architecture. The transformer encoder is composed of multiple layers of self-attention mechanisms and feed-forward neural networks. It is responsible for processing and encoding the input text in a hierarchical manner, capturing dependencies and relationships between words or tokens.
+Basic Structure of NN for LLM:  
+    1. Transformer Encoder: The core of the model is typically based on a transformer encoder, which is a deep neural network architecture. The transformer encoder is composed of multiple layers of self-attention mechanisms and feed-forward neural networks. It is responsible for processing and encoding the input text in a hierarchical manner, capturing dependencies and relationships between words or tokens.  
     2. Attention Mechanism: The attention mechanism allows the model to weigh the importance of different words or tokens in the input sequence when generating the output. It helps the model focus on relevant information and handle long-range dependencies effectively.
     3. Positional Encoding: Since transformers do not inherently capture the sequential order of words, positional encoding is used to incorporate the order information. It adds positional embeddings to the input tokens, providing the model with a sense of the token's position in the sequence.
     4. Multi-Head Attention: The attention mechanism is usually implemented as multi-head attention, where the model attends to different subspaces of the input representation. This allows the model to capture different types of relationships and dependencies in the text.
