@@ -1,3 +1,5 @@
+# LINK TO WHERE I FOUND SOURCE CODE: https://huggingface.co/transformers/v3.5.1/_modules/transformers/modeling_bert.html
+#
 # coding=utf-8
 # Copyright 2018 The Google AI Language Team Authors and The HuggingFace Inc. team.
 # Copyright (c) 2018, NVIDIA CORPORATION.  All rights reserved.
