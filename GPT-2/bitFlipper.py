@@ -1,6 +1,5 @@
 import random
 
-
 # flips random bit in number
 def bitFlipper(number):
     a = bin(number)[2:]
