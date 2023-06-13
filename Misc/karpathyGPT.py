@@ -3,14 +3,14 @@ import torch.nn as nn
 from torch.nn import functional as F
 
 # hyperparameters
-batch_size = 64 #  how many independent sequence to process in parallel
-block_size = 256 # what is max context length for prediction
-max_iters = 5000
+batch_size = 32 #  how many independent sequence to process in parallel
+block_size = 8 # what is max context length for prediction
+max_iters = 3000
 eval_interval = 500
 learning_rate = 3e-4
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 eval_iters = 200
-n_embed = 384
+n_embed = 30
 n_head = 6
 n_layer = 6
 dropout = 0.2
@@ -18,7 +18,7 @@ dropout = 0.2
 
 torch.manual_seed(1337)
 
-with open('input.txt', 'r', encoding = 'utf-8') as f:
+with open('tinyShakespeare.txt', 'r', encoding = 'utf-8') as f:
     text = f.read()
 
 # here are all the unique characters that occur in this text
@@ -33,8 +33,8 @@ decode = lambda l: ''.join([itos[i] for i in l]) # decoder: take a list of integ
 # train and test splits
 data = torch.tensor(encode(text), dtype = torch.long)
 n = int(0.9*len(data)) # first 90% of text is training data up to n, rest is test data
-train_data = data[:n]
-val_data = data[n:]
+train_data = data[:(~n)]
+val_data = data[(~n):]
 
 # data loading
 def get_batch(split):
@@ -82,7 +82,7 @@ class Head(nn.Module):
         wei = self.dropout(wei)
         # perform the wighted aggregation of the values
         v = self.value(x) # (B,T,C)
-        out = wei @ v # (B,T,T) @ (B,T,C) -> (B,T,C)
+        out = wei @ v  # (B,T,T) @ (B,T,C) -> (B,T,C)
         return out
     
 class MultiHeadAttention(nn.Module):
