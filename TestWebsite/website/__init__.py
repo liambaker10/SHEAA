@@ -1,11 +1,14 @@
 from flask import Flask
 
+
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'ahsdgfkjaghdfkj'
-    
+    app.config["SECRET_KEY"] = "ahsdgfkjaghdfkj"
+
     from .views import views
-    
-    app.register_blueprint(views, url_prefix='/')
-    
+    from .AboutModels import AboutModels
+
+    app.register_blueprint(views, url_prefix="/")
+    app.register_blueprint(AboutModels, url_prefix="/")
+
     return app
