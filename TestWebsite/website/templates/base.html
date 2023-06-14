@@ -13,6 +13,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 		<noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/noscript.css')}}" /></noscript>
+		<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" /> <!-- Included pyscript to run python code within html -->
+		<script defer src="https://pyscript.net/latest/pyscript.js"></script>
 	</head>
 	<body class="is-preload">
 
@@ -34,6 +36,7 @@
 							<li><a href="landing.html">Landing</a></li>
 							<li><a href="generic.html">Generic</a></li>
 							<li><a href="elements.html">Elements</a></li>
+							<li><a href="pipeline.html">Pipeline (GPT-2)</a></li>
 						</ul>
 						<ul class="actions stacked">
 							<li><a href="#" class="button primary fit">Get Started</a></li>
