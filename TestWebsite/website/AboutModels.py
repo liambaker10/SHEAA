@@ -10,7 +10,7 @@ def AboutModel():
 def GPT2():
     return render_template("GPT2.html")
 
-@AboutModels.route('/AboutModels/GPT-3.5')
+@AboutModels.route('/AboutModels/GPT-3')
 def GPT3():
     return render_template("GPT3.html")
 
@@ -21,3 +21,7 @@ def Bert():
 @AboutModels.route('/AboutModels/Bart')
 def Bart():
     return render_template("Bart.html")
+
+@AboutModels.route('/AboutModels/dialGPT')
+def dialGPT():
+    return render_template("dialGPT.html")
