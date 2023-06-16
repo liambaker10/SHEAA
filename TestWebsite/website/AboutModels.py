@@ -21,7 +21,3 @@ def Bert():
 @AboutModels.route('/AboutModels/Bart')
 def Bart():
     return render_template("Bart.html")
-
-@AboutModels.route('/AboutModels/dialGPT')
-def dialGPT():
-    return render_template("dialGPT.html")
