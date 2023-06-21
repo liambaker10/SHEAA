@@ -26,7 +26,8 @@ def plot_weight_distribution(model_name):
                 concatenated_tensor = torch.cat((concatenated_tensor, param_tensor))
 
     # Move the concatenated tensor to the GPU
-    concatenated_tensor = concatenated_tensor.cuda()
+    if torch.cuda.is_available():
+        concatenated_tensor = concatenated_tensor.cuda()
 
     # Convert the GPU tensor to a CPU tensor (if necessary)
     concatenated_tensor_cpu = concatenated_tensor.cpu()
