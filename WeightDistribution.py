@@ -28,7 +28,12 @@ for _, param in model.named_parameters():
     parameter_values.extend(param_values)
 
 # Plotting the weight distribution
-plt.hist(parameter_values, bins=50)
+start = -1.0
+stop = 1.2  # We use 1.6 to include the stop value (1.5)
+step = 0.1
+bins = [round(start + i * step, 1) for i in range(int((stop - start) / step))]
+
+plt.hist(parameter_values, bins=bins, edgecolor='black', log=True)
 plt.xlabel('Parameter Values')
 plt.ylabel('Frequency')
 plt.title('Weight Distribution of Model Parameters')
