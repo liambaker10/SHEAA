@@ -8,6 +8,8 @@ from GPT2.sample import sample_sequence
 from GPT2.encoder import get_encoder
 import torch
 import matplotlib.pyplot as plt
+from torch import nn
+import torch.multiprocessing as mp
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 state_dict = torch.load('gpt2-pytorch_model.bin', map_location='cpu' if not torch.cuda.is_available() else None)
@@ -32,7 +34,6 @@ def calculate_parameter_values(model, param_queue):
         parameter_values.extend(param_values)
     param_queue.put(parameter_values)
 
-model = MyModel()
 
 # Number of processes to utilize (adjust according to your system)
 num_processes = mp.cpu_count()
