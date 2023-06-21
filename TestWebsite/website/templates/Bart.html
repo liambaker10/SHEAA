@@ -10,7 +10,7 @@ content%}
 		<section id="one">
 			<div class="inner">
 				<header class="major">
-					<h1>Generic</h1>
+					<h1>This is Bart-Base</h1>
 				</header>
 				<span class="image main"
 					><img src="static/images/artificial-intelligence.webp" alt=""
@@ -18,11 +18,11 @@ content%}
 				<p>Choose a model name for more information about it</p>
 				<!-- Dropdown -->
 				<!--<div class="dropdown mt-3">
-                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                        id="book-dropdown" data-bs-toggle="dropdown">
-                            Choose a book title
-                        </button>
-                    </div> -->
+							<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="book-dropdown" data-bs-toggle="dropdown">
+								Choose a book title
+							</button>
+						</div> -->
 				<div class="dropdown">
 					<link
 						href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -51,7 +51,9 @@ content%}
 							>
 						</li>
 						<li><a class="dropdown-item" href="/AboutModels/Bart">Bart</a></li>
-						<li><a class="dropdown-item" href="/AboutModels/dialGPT">DialGPT</a></li>
+						<li>
+							<a class="dropdown-item" href="/AboutModels/dialGPT">DialGPT</a>
+						</li>
 					</ul>
 				</div>
 				<link
@@ -61,18 +63,24 @@ content%}
 			</div>
 		</section>
 		<!-- Main -->
-		<h1>This is Bart-Base</h1>
-			<h4>When was Bart-Base created?</h4>
-				<p>October 29, 2020</p>
-			<h4>Primary Users</h4>
-				<p>Developers or researchers who are trying to develop NLP models. </p>
-			<h4>Uses</h4>
-				<p>The raw model is useful for text infilling, but it is primarily useful when trained on a supervised dataset. </p>
-			<h4>Training</h4>
-				<p>Bert was specifically trained on Wikipedia (~2.5B words) and Google's BookCorpus (~800M words)</p>
-			<h4>General Data</h4>
-				<p>Number of Parameters: 139M </p>
-				<p>Model Size: 2.5 GB</p>
+
+		<h4>When was Bart-Base created?</h4>
+		<p>October 29, 2020</p>
+		<h4>Primary Users</h4>
+		<p>Developers or researchers who are trying to develop NLP models.</p>
+		<h4>Uses</h4>
+		<p>
+			The raw model is useful for text infilling, but it is primarily useful
+			when trained on a supervised dataset.
+		</p>
+		<h4>Training</h4>
+		<p>
+			Bert was specifically trained on Wikipedia (~2.5B words) and Google's
+			BookCorpus (~800M words)
+		</p>
+		<h4>General Data</h4>
+		<p>Number of Parameters: 139M</p>
+		<p>Model Size: 2.5 GB</p>
 	</div>
 </html>
 {% endblock %}
