@@ -8,8 +8,7 @@ from GPT2.sample import sample_sequence
 from GPT2.encoder import get_encoder
 import torch
 import matplotlib.pyplot as plt
-from torch import nn
-import torch.multiprocessing as mp
+
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 state_dict = torch.load('gpt2-pytorch_model.bin', map_location='cpu' if not torch.cuda.is_available() else None)
@@ -28,8 +27,8 @@ for _, param in model.named_parameters():
     parameter_values.extend(param_values)
 
 # Plotting the weight distribution
-start = -1.0
-stop = 1.2  # We use 1.6 to include the stop value (1.5)
+start = -0.9
+stop = 1.3  # We use 1.6 to include the stop value (1.5)
 step = 0.1
 bins = [round(start + i * step, 1) for i in range(int((stop - start) / step))]
 
