@@ -41,3 +41,11 @@ print(tensor)
 flipped_tensor = tensorBitFlipper(tensor)
 print("Flipped Stacked Tensor:")
 print(flipped_tensor)
+
+# 1-D example
+singDimTens = tf.constant([9, 8, 7, 4, 37], dtype = tf.uint16)
+print("Original 1-Dimensional Tensor:")
+print(singDimTens)
+newTens = tensorBitFlipper(singDimTens)
+print("New tensor:")
+print(newTens)
