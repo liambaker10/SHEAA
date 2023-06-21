@@ -35,8 +35,8 @@ def plot_weight_distribution(model_name):
     parameter_values = concatenated_tensor_cpu.detach().numpy()
 
     # Plotting the weight distribution
-    start = -3.0
-    stop = 3.0
+    start = -10.0
+    stop = 10.0
     step = 0.05
     bins = [round(start + i * step, 1) for i in range(int((stop - start) / step))]
 
@@ -48,4 +48,4 @@ def plot_weight_distribution(model_name):
     plt.show()
 
 
-plot_weight_distribution("google/electra-base-discriminator")
+plot_weight_distribution("google/electra-base-distributor")
