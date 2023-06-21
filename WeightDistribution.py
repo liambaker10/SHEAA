@@ -21,41 +21,11 @@ model = load_weight(model, state_dict)
 model.to(device)
 model.eval()
 
-# def count_parameters(models):
-#     return sum(p.numel() for p in models.parameters() if p.requires_grad)
-
-# count_parameters(model)
-
-
-def calculate_parameter_values(model, param_queue):
-    parameter_values = []
-    for _, param in model.named_parameters():
-        param_values = param.data.view(-1).cpu().numpy()
-        parameter_values.extend(param_values)
-    param_queue.put(parameter_values)
-
-
-# Number of processes to utilize (adjust according to your system)
-num_processes = mp.cpu_count()
-
-# Create a queue to store parameter values from different processes
-param_queue = mp.Queue()
-
-# Create and start the processes
-processes = []
-for _ in range(num_processes):
-    process = mp.Process(target=calculate_parameter_values, args=(model, param_queue))
-    process.start()
-    processes.append(process)
-
-# Collect the parameter values from the queue
+# Collecting parameter values
 parameter_values = []
-for _ in range(num_processes):
-    parameter_values.extend(param_queue.get())
-
-# Join the processes
-for process in processes:
-    process.join()
+for _, param in model.named_parameters():
+    param_values = param.data.view(-1).cpu().numpy()
+    parameter_values.extend(param_values)
 
 # Plotting the weight distribution
 plt.hist(parameter_values, bins=50)
