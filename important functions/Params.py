@@ -51,6 +51,34 @@ def get_parameter_value_by_index(model, parameter_index):
 
     return parameter_value
 
+import torch
+import random
+
+def get_parameter_value_by_index_modified(model, parameter_index):
+    """
+    Get the value assigned to a parameter based on its index in the model's parameter list.
+
+    Args:
+        model: The model instance.
+        parameter_index (int): The index of the parameter.
+
+    Returns:
+        The value assigned to the parameter.
+    """
+    if isinstance(model, dict):
+        raise ValueError("The model should not be a dictionary when retrieving a parameter by index.")
+    else:
+        model_parameters = list(model.parameters())
+        if parameter_index < len(model_parameters):
+            parameter_tensor = model_parameters[parameter_index]
+            parameter_tensor_shape = parameter_tensor.shape
+            parameter_tensor_random = torch.randn(parameter_tensor_shape)
+            model_parameters[parameter_index] = parameter_tensor_random
+            return model_parameters[parameter_index].data
+
+    return None
+
+
 def get_parameter_values(model):
     """
     Get the values of all parameters in the model.
