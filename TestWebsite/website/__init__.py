@@ -8,11 +8,11 @@ def create_app():
     from .views import views
     from .AboutModels import AboutModels
     from .tryGPT2 import tryGPT2
-    from .pipeline import pipeline
+    from .tryBert import tryBert
 
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(AboutModels, url_prefix="/")
     app.register_blueprint(tryGPT2, url_prefix="/")
-    app.register_blueprint(pipeline, url_prefix="/")
+    app.register_blueprint(tryBert, url_prefix="/")
 
     return app

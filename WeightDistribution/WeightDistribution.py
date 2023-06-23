@@ -1,5 +1,5 @@
 # cd into the correct folder
-%cd D:\Documents\VSCODE\Python\gpt-2-Pytorch-master\gpt-2-Pytorch-master
+# %cd D:\Documents\VSCODE\Python\gpt-2-Pytorch-master\gpt-2-Pytorch-master
 
 from GPT2.model import (GPT2LMHeadModel)
 from GPT2.utils import load_weight

@@ -495,22 +495,22 @@ pre code {
 }
 @media (min-width: 576px) {
 	.container {
-		max-width: 540px;
+		max-width: 800px;
 	}
 }
 @media (min-width: 768px) {
 	.container {
-		max-width: 720px;
+		max-width: 1000px;
 	}
 }
 @media (min-width: 992px) {
 	.container {
-		max-width: 960px;
+		max-width: 1200px;
 	}
 }
 @media (min-width: 1200px) {
 	.container {
-		max-width: 1140px;
+		max-width: 1500px;
 	}
 }
 .container-fluid {
@@ -519,14 +519,16 @@ pre code {
 	padding-left: 15px;
 	margin-right: auto;
 	margin-left: auto;
+	padding-top: 4em;
+	padding-bottom: 2em;
 }
 .row {
 	display: -ms-flexbox;
 	display: flex;
 	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-	margin-right: -15px;
-	margin-left: -15px;
+	/* flex-wrap: wrap; */
+	/* margin-right: -100px;
+	margin-left: -100px; */
 }
 .no-gutters {
 	margin-right: 0;
@@ -610,8 +612,8 @@ pre code {
 	position: relative;
 	width: 100%;
 	min-height: 1px;
-	padding-right: 15px;
-	padding-left: 15px;
+	/* padding-right: 15px;
+	padding-left: 15px; */
 }
 .col {
 	-ms-flex-preferred-size: 0;
@@ -3753,6 +3755,8 @@ input[type="submit"].btn-block {
 	.navbar-expand-sm > .container-fluid {
 		padding-right: 0;
 		padding-left: 0;
+		padding-top: 4em;
+		padding-bottom: 2em;
 	}
 }
 @media (min-width: 576px) {
