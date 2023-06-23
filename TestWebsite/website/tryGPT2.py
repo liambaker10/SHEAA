@@ -7,7 +7,7 @@ tryGPT2 = Blueprint("tryGPT2", __name__)
 
 @tryGPT2.route("/tryGPT2")
 def tryModel():
-    return render_template("tryModels.html")
+    return render_template("tryModelGPT2.html")
 
 
 @tryGPT2.route("/tryGPT2/get", methods=["GET", "POST"])  # type: ignore
@@ -19,6 +19,7 @@ def chat():
 
 def get_Chat_response(text):
     generator = pipeline("text-generation", model="gpt2")
-    output = str(generator(text, max_length=30, num_return_sequences=1))
-    formatted = output[21 : len(output) - 3].replace("/", "")
-    return formatted.replace("\n", " ").replace("\n", " ")
+    output = generator(text, max_length=30, num_return_sequences=1)
+    # formatted = output[21 : len(output) - 3].replace("/", "")
+    formatted = output[0]["generated_text"]
+    return formatted
