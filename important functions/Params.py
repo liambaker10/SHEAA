@@ -51,9 +51,6 @@ def get_parameter_value_by_index(model, parameter_index):
 
     return parameter_value
 
-import torch
-import random
-
 def get_parameter_value_by_index_modified(model, parameter_index):
     """
     Get the value assigned to a parameter based on its index in the model's parameter list.
