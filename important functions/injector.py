@@ -8,23 +8,14 @@ import random
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
 def count_parameters(model: nn.Module) -> int:
-    total_params = 0
-    if isinstance(model, dict):
-        for param in model.values():
-            total_params += param.numel()
-    else:
-        for param in model.parameters():
-            total_params += param.numel()
+    total_params = sum(p.numel() for p in model.parameters())
     return total_params
 
 def get_parameter_value_by_index(model, parameter_index):
     parameter_value = None
-    if isinstance(model, dict):
-        raise ValueError("The model should not be a dictionary when retrieving a parameter by index.")
-    else:
-        model_parameters = list(model.parameters())
-        if parameter_index < len(model_parameters):
-            parameter_value = model_parameters[parameter_index].data
+    model_parameters = list(model.parameters())
+    if parameter_index < len(model_parameters):
+        parameter_value = model_parameters[parameter_index].data
     return parameter_value
 
 gpt2_model = GPT2LMHeadModel.from_pretrained('gpt2')
@@ -36,12 +27,13 @@ state_dict = gpt2_model.state_dict()  # Get the model's state_dict
 
 for i in range(x, x + num_params):
     parameter_index_gpt2 = i
-    value_gpt2 = get_parameter_value_by_index(gpt2_model, parameter_index_gpt2)
-    if value_gpt2 is not None:
-        state_dict[list(state_dict.keys())[parameter_index_gpt2]].fill_(new_value)  # Modify the parameter value in the state_dict
+    parameter_value = get_parameter_value_by_index(gpt2_model, parameter_index_gpt2)
+    if parameter_value is not None:
+        parameter_value.fill_(new_value)  # Modify the parameter value
 
 # Create an instance of the modified model
-modified_model = GPT2LMHeadModel.from_pretrained('gpt2', state_dict=state_dict)
+modified_model = GPT2LMHeadModel.from_pretrained('gpt2')
+modified_model.load_state_dict(state_dict, strict=False)  # Load the modified state_dict
 
 # Create a tokenizer for the model
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
