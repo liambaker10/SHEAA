@@ -45,8 +45,12 @@ input_text = "I want to eat a [MASK]."
 input_tokens = tokenizer.tokenize(input_text)
 masked_index = input_tokens.index("[MASK]")
 
+# Add special tokens to the input tokens
+input_tokens = ["[CLS]"] + input_tokens + ["[SEP]"]
+
 # Encode the input text
-input_ids = tokenizer.encode(input_tokens, return_tensors='pt').to(device)
+input_ids = tokenizer.convert_tokens_to_ids(input_tokens)
+input_ids = torch.tensor(input_ids).unsqueeze(0).to(device)
 
 # Get the predictions for the masked token
 with torch.no_grad():
@@ -57,14 +61,13 @@ with torch.no_grad():
     assert predictions.shape[1] >= masked_index + 1, "Masked index is out of bounds."
 
     # Get the predicted token for the masked position
-    predicted_token_index = torch.argmax(predictions[0, masked_index]).item()
-    predicted_token = tokenizer.decode(predicted_token_index)
+    predicted_token_index = torch.argmax(predictions[0, masked_index + 1]).item()  # Add 1 to masked_index due to [CLS] token
+    predicted_token = tokenizer.convert_ids_to_tokens(predicted_token_index)
 
-# Replace the masked token with the predicted token
-completed_text = " ".join(input_tokens[:masked_index] + [predicted_token] + input_tokens[masked_index+1:])
+# Print the generated word
+print("Generated word:")
+print(predicted_token)
 
-# Print the completed text
-print("Completed text:")
-print(completed_text)
+wd.plot_weight_distribution("bert-base-uncased", model)
 
-wd.plot_weight_distribution("bert=base-uncased", model)
+
