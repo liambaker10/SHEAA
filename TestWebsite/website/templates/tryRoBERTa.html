@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Bert{% endblock %}
+{% block title %}RoBERTa{% endblock %}
 {% block content%}
 
 <html>
@@ -13,7 +13,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 		<head>
-			<title>GPT2 Chatbot</title>
+			<title>RoBERTa Chatbot</title>
 			<link
 				rel="stylesheet"
 				href="{{ url_for('static', filename='css/chatbox/stackpath.bootstrap.css') }}"
@@ -46,7 +46,7 @@
 										<span class="online_icon"></span>
 									</div>
 									<div class="user_info">
-										<span color="blue">&nbsp Bert-base</span>
+										<span color="blue">&nbsp RoBERTa</span>
 										<p color="dark">&nbsp Enter a Prompt:</p>
 									</div>
 								</div>
@@ -159,11 +159,11 @@
 		</body>
 		<br />
 		<p style="color: white; padding-left: 3%">
-			Bert is a masked language model meaning that it tries to guess what
-			the next word in a sequence is. To use Bert and get a response, the user
+			RoBERTa is a masked language model meaning that it tries to guess what
+			the next word in a sequence is. To use RoBERTa and get a response, the user
 			must enter their input in a specific manner using the [MASK] keyword.
-			Also, make sure your prompt ends with a period.<br />For example:
-			<strong>Bert's favorite color is [MASK].</strong>
+			<br />For example:
+			<strong>RoBERTa's favorite color is [MASK]</strong>
 		</p>
 		<br />
 	</div>
@@ -202,7 +202,7 @@
 					num_sentences: $("#numSentences").val()
 				},
 				type: "POST",
-				url: "/tryBert/get",
+				url: "/tryRoBERTa/get",
 			}).done(function (data) {
 				var botHtml =
 					'<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png" class="rounded-circle user_img_msg" width="40" display="inline-block" hspace="20"></div><div class="msg_cotainer">' +

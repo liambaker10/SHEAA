@@ -1,107 +1,106 @@
-{% extends "base.html" %} {% block title %}About Models{% endblock %} {% block
+{% extends "base.html" %} {% block title %}DialoGPT{% endblock %} {% block
 content%}
+
 <html>
-	<div id="main">
-		<link
-			rel="stylesheet"
-			href="{{ url_for('static', filename='css/style.css') }}"
-		/>
-		<!-- One -->
-		<section id="one">
-			<div class="inner">
-				<header class="major">
-					<h1>This is DialGPT</h1>
-				</header>
-				<span class="image main"
-					><img src="static/images/artificial-intelligence.webp" alt=""
-				/></span>
-				<p>Choose a model name for more information about it</p>
-				<!-- Dropdown -->
-				<!--<div class="dropdown mt-3">
-                            <button class="btn btn-secondary dropdown-toggle" type="button"
-                            id="book-dropdown" data-bs-toggle="dropdown">
-                                Choose a book title
-                            </button>
-                        </div> -->
-				<div class="dropdown">
-					<link
-						href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-						rel="stylesheet"
-						integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-						crossorigin="anonymous"
-					/>
-					<button
-						class="btn btn-secondary dropdown-toggle"
-						type="button"
-						data-bs-toggle="dropdown"
-						aria-expanded="false"
-					>
-						--Select Model--
-					</button>
-					<ul class="dropdown-menu">
-						<li>
-							<a class="dropdown-item" href="/AboutModels/GPT-2">GPT-2</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="/AboutModels/GPT-3.5">GPT-3.5</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="/AboutModels/Bert-base"
-								>Bert-base</a
-							>
-						</li>
-						<li><a class="dropdown-item" href="/AboutModels/Bart">Bart</a></li>
-						<li>
-							<a class="dropdown-item" href="/AboutModels/dialGPT">DialGPT</a>
-						</li>
-					</ul>
-				</div>
-				<link
-					rel="stylesheet"
-					href="{{ url_for('static', filename='css/style.css') }}"
-				/>
-			</div>
-		</section>
-		<!-- Main -->
-		<h4>When was DialGPT Created?</h4>
-		<p>June 2021</p>
-		<h4>Primary Users</h4>
-		<p>AI researchers and practitioners</p>
-		<h4>Uses</h4>
-		<p>
-			Chatbots: DialoGPT can be used to create chatbot systems that engage in
-			text-based conversations with users. It generates responses based on the
-			given context and can handle multi-turn conversations.
-		</p>
-		<p>
-			Virtual Assistants: DialoGPT can serve as the core component of virtual
-			assistants or voice-activated systems, providing natural and interactive
-			responses to user queries and commands.
-		</p>
-		<p>
-			Customer Support: DialoGPT can be employed in customer support systems to
-			automate responses to frequently asked questions or assist human agents by
-			providing suggestions or answers based on the context of the customer's
-			query.
-		</p>
-		<p>
-			Language Tutoring: DialoGPT can be used in educational applications as a
-			language tutor, providing interactive conversational practice and
-			assistance in language learning.
-		</p>
-		<p>
-			Creative Writing and Story Generation: DialoGPT can generate text in a
-			conversational manner, making it suitable for creative writing, story
-			generation, or interactive storytelling applications.
-		</p>
-		<h4>Training</h4>
-		<p>
-			The model is trained on 147M multi-turn dialogue from Reddit discussion
-			threads dating from 2005-2017.
-		</p>
-		<h4>General Data</h4>
-		<p>Number of parameters: 345M</p>
-		<p>Model Size: 774 MB</p>
-	</div>
+  <div id="main">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+
+    <!-- One -->
+    <section id="one">
+      <div class="inner">
+        <header class="major">
+          <h1>This is DialoGPT</h1>
+          <a href="/tryDial" class="button primary">Try the Model</a>
+        </header>
+        <span class="image main"
+          ><img src="static/images/artificial-intelligence.webp" alt=""
+        /></span>
+        <p>Choose a model name for more information about it</p>
+        <!-- Dropdown -->
+        <div class="dropdown">
+          <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+            crossorigin="anonymous"
+          />
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            --Select Model--
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="/AboutModels/GPT-2">GPT-2</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/AboutModels/GPT-3.5">GPT-3.5</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/AboutModels/Bert-base"
+                >Bert-base</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/AboutModels/Bart">Bart</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/AboutModels/dialGPT">DialGPT</a>
+            </li>
+          </ul>
+        </div>
+        <link
+          rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}"
+        />
+      </div>
+    </section>
+    <!-- Main -->
+    <h4>When was DialoGPT Created?</h4>
+    <p>June 2021</p>
+    <h4>Primary Users</h4>
+    <p>AI researchers and practitioners</p>
+    <h4>Uses</h4>
+    <p>
+      Chatbots: DialoGPT can be used to create chatbot systems that engage in
+      text-based conversations with users. It generates responses based on the
+      given context and can handle multi-turn conversations.
+    </p>
+    <p>
+      Virtual Assistants: DialoGPT can serve as the core component of virtual
+      assistants or voice-activated systems, providing natural and interactive
+      responses to user queries and commands.
+    </p>
+    <p>
+      Customer Support: DialoGPT can be employed in customer support systems to
+      automate responses to frequently asked questions or assist human agents by
+      providing suggestions or answers based on the context of the customer's
+      query.
+    </p>
+    <p>
+      Language Tutoring: DialoGPT can be used in educational applications as a
+      language tutor, providing interactive conversational practice and
+      assistance in language learning.
+    </p>
+    <p>
+      Creative Writing and Story Generation: DialoGPT can generate text in a
+      conversational manner, making it suitable for creative writing, story
+      generation, or interactive storytelling applications.
+    </p>
+    <h4>Training</h4>
+    <p>
+      The model is trained on 147M multi-turn dialogue from Reddit discussion
+      threads dating from 2005-2017.
+    </p>
+    <h4>General Data</h4>
+    <p>Number of parameters: 345M</p>
+    <p>Model Size: 774 MB</p>
+  </div>
 </html>
 {% endblock %}
