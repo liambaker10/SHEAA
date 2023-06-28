@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}About Models{% endblock %} {% block
+{% extends "base.html" %} {% block title %}Bert{% endblock %} {% block
 content%}
 <html>
 	<div id="main">
@@ -10,10 +10,10 @@ content%}
 		<section id="one">
 			<div class="inner">
 				<header class="major">
-					<h1>This is GPT-2</h1>
+					<h1>This is Bert-base-uncased</h1>
 					<div style="display: flex; align-items: center;">
-						<a href="/tryGPT2" class="button primary fit">Try the Model</a>
-						<a href="/anotherPage" class="button primary fit" style="margin-left: 5%">Try Error Injection</a>
+						<a href="/tryBert" class="button primary fit">Try the Model</a>
+						<a href="/tryBertError" class="button primary fit" style="margin-left: 5%">Try Error Injection</a>
 					</div>
 				</header>
 				
@@ -45,19 +45,22 @@ content%}
 					</button>
 					<ul class="dropdown-menu">
 						<li>
-							<a class="dropdown-item" href="/AboutModels/GPT-2">GPT-2</a>
+							<a class="dropdown-item" href="/AboutModel/GPT-2">GPT-2</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="/AboutModels/GPT-3.5">GPT-3</a>
+							<a class="dropdown-item" href="/AboutModel/GPT-3.5">GPT-3</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="/AboutModels/Bert-base"
+							<a class="dropdown-item" href="/AboutModel/Bert-base"
 								>Bert-base</a
 							>
 						</li>
-						<li><a class="dropdown-item" href="/AboutModels/Bart">Bart</a></li>
+						<li><a class="dropdown-item" href="/AboutModel/Bart">Bart</a></li>
 						<li>
-							<a class="dropdown-item" href="/AboutModels/dialGPT">DialGPT</a>
+							<a class="dropdown-item" href="/AboutModel/dialGPT">DialoGPT</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="/AboutModel/RoBERTa">RoBERTa</a>
 						</li>
 					</ul>
 				</div>

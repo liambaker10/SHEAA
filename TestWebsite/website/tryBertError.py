@@ -1,11 +1,33 @@
+from flask import Flask, Blueprint, render_template, request, jsonify
 import torch
 import torch.nn as nn
-
-# import weightdistribution as wd
 from transformers import BertForMaskedLM, BertTokenizer
 
+tryBertError = Blueprint("tryBertError", __name__)
 
-def BertErrorInjection(num_params, new_val, input_text):
+
+@tryBertError.route("/tryBertError")
+def tryingBertError():
+    return render_template("tryBertError.html")
+
+
+@tryBertError.route("/tryBertError/get", methods=["GET", "POST"])
+def chat():
+    msg = request.form["msg"]
+    number_parameters = request.form["num_parameters"]
+    new_value = request.form["new_value"]
+    num_params = int(number_parameters)
+    input = msg
+    new_val = float(new_value)
+
+    return str(BertErrorInjection(input, num_params=num_params, new_val=new_val))
+
+
+# def get_Chat_response(text, num_params=1, new_value=-1):
+#     return BertErrorInjection(num_params, new_value, text)
+
+
+def BertErrorInjection(input_text, num_params, new_val):
     # Create the BERT model and tokenizer
     model = BertForMaskedLM.from_pretrained("bert-base-uncased")
     tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
@@ -78,9 +100,8 @@ def BertErrorInjection(num_params, new_val, input_text):
         ).item()  # Add 1 to masked_index due to [CLS] token
         predicted_token = tokenizer.convert_ids_to_tokens(predicted_token_index)
 
-    # Print the generated word
-    print("Generated word:")
-    print(predicted_token)
+    # return the generated word
+    return predicted_token
 
 
 # Ex: BertErrorInjection(10,-2,"I want to eat a [MASK].")
