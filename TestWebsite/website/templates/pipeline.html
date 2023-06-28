@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+{% block title %} Pipeline for GPT-2 {% endblock %}
+{% block content %}
+<html>
+    <head>
+        <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    </head>
+        <body>
+            <h1>Try out this QA pipeline for GPT-2</h1>
+            <py-script>
+                from transformers import pipeline, set_seed
+
+
+                generator = pipeline('text-generation', model='gpt2')
+                set_seed(42)
+                response = generator("Hello, I'm a language model,", max_length=30, num_return_sequences=5)
+                print(response)
+            </py-script>
+        </body>
+    </html>
+    {% endblock %}
