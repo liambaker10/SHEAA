@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, Flask
 
-AboutModel= Blueprint("AboutModel" __name__)
+AboutModel = Blueprint("AboutModel", __name__)
 
 
-@AboutModelroute("/AboutModel")
+@AboutModel.route("AboutModel")
 def AboutModels():
     return render_template("AboutModel.html")
 
