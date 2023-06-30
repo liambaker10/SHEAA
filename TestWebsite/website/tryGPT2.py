@@ -14,14 +14,17 @@ def tryModel():
 def chat():
     msg = request.form["msg"]
     new_length = request.form["len"]
+    temp = float(request.form["temperature"])
     max_len = int(new_length)
     input = msg
-    return get_Chat_response(input, max_len)
+    return get_Chat_response(input, max_len, temp)
 
 
-def get_Chat_response(text, max_length=50):
+def get_Chat_response(text, max_length=50, temperature=1.0):
     generator = pipeline("text-generation", model="gpt2")
-    output = generator(text, max_length=max_length, num_return_sequences=1)
+    output = generator(
+        text, max_length=max_length, num_return_sequences=1, temperature=temperature
+    )
     # formatted = output[21 : len(output) - 3].replace("/", "")
     formatted = output[0]["generated_text"]
     return formatted

@@ -49,4 +49,4 @@ def plot_weight_distribution(model_name):
     plt.show()
 
 
-plot_weight_distribution("google/electra-base-distributor")
+plot_weight_distribution("facebook/bart-large-cnn")

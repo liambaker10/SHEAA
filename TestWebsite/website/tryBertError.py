@@ -7,8 +7,16 @@ tryBertError = Blueprint("tryBertError", __name__)
 
 
 @tryBertError.route("/tryBertError")
-def tryingBertError():
-    return render_template("tryBertError.html")
+def tryModel():
+    option_values = [
+        "attn.weight",
+        "fc.weight",
+        "proj.weight",
+        "attn.bias",
+        "fc.bias",
+        "proj.bias",
+    ]
+    return render_template("tryBertError.html", option_values=option_values)
 
 
 @tryBertError.route("/tryBertError/get", methods=["GET", "POST"])

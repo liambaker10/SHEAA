@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}DialoGPT{% endblock %} {% block
+{% extends "base.html" %} {% block title %}Bart{% endblock %} {% block
     content%}
     
     <html>
@@ -12,7 +12,7 @@
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
             <head>
-                <title>DialoGPT Chatbot</title>
+                <title>Bart</title>
                 <link
                     rel="stylesheet"
                     href="{{ url_for('static', filename='css/chatbox/stackpath.bootstrap.css') }}"
@@ -45,7 +45,7 @@
                                             <span class="online_icon"></span>
                                         </div>
                                         <div class="user_info">
-                                            <span color="blue">&nbsp DialoGPT</span>
+                                            <span color="blue">&nbsp Bart</span>
                                             <p color="dark">&nbsp Enter a prompt:</p>
                                         </div>
                                     </div>
@@ -141,30 +141,30 @@
                                             <input
                                                 type="range"
                                                 class="custom-range"
-                                                min="0.1"
-                                                max="3.0"
-                                                step="0.1"
+                                                min="5"
+                                                max="300"
+                                                step="1"
                                                 id="slider1"
-                                                oninput="updateValue(this.value, 'sliderValue1', 'Temperature')"
+                                                oninput="updateValue(this.value, 'sliderValue1', 'Length')"
                                                 style="--value: {{ slider_value1 }};"
                                             />
                                             <span id="sliderValue1" class="slider-value"
-                                                >Temperature: {{ slider_value1 }}</span
+                                                >Length: {{ slider_value1 }}</span
                                             >
                                         </div>
                                         <div class="slider-container">
                                             <input
                                                 type="range"
                                                 class="custom-range"
-                                                min="1"
-                                                max="100"
-                                                step="1"
+                                                min="0.01"
+                                                max="3.0"
+                                                step=".01"
                                                 id="slider2"
-                                                oninput="updateValue(this.value, 'sliderValue2', 'Length')"
+                                                oninput="updateValue(this.value, 'sliderValue2', 'Temperature')"
                                                 style="--value: {{ slider_value2 }};"
                                             />
                                             <span id="sliderValue2" class="slider-value"
-                                                >Length: {{ slider_value2 }}</span
+                                                >Temperature {{ slider_value2 }}</span
                                             >
                                         </div>
                                     </form>
@@ -182,7 +182,21 @@
                 document.getElementById(elementId).textContent = name +":" + value;
             }
         </script>
-        
+        <!-- <script>
+            // Post slider value to flask
+            function postSliderValue() {
+                  var slider = document.getElementById("sliderSend");
+                  var value = slider.value;
+                  $.ajax({
+                        data: {
+                            msg: rawText,
+                        },
+                        type: "POST",
+                        url: "/tryGPT2/get",
+                    })
+            }
+         </script> -->
+        <!-- Send msg -->
         <script>
             $(document).ready(function () {
                 $("#messageArea").on("submit", function (event) {
@@ -201,11 +215,11 @@
                     $.ajax({
                         data: {
                             msg: rawText,
-                            temp: sliderValue1,
-                            len: sliderValue2
+                            len: sliderValue1, // Add the slider value to the data object
+                            temp: sliderValue2
                         },
                         type: "POST",
-                        url: "/tryDial/get",
+                        url: "/tryBart/get",
                     }).done(function (data) {
                         var botHtml =
                             '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png" class="rounded-circle user_img_msg" width="40" display="inline-block" hspace="20"></div><div class="msg_cotainer">' +
