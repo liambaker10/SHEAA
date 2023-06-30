@@ -3,7 +3,11 @@ from flask import Blueprint, render_template, Flask
 AboutModel = Blueprint("AboutModel", __name__)
 
 
+<<<<<<< HEAD
+@AboutModel.route("AboutModel")
+=======
 @AboutModel.route("/AboutModel")
+>>>>>>> bb90898b141c565549b4c3c702fdaba0ea3598f7
 def AboutModels():
     return render_template("AboutModel.html")
 
