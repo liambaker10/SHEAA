@@ -1,11 +1,8 @@
 {% extends "base.html" %} {% block title %}About Models{% endblock %} {% block
 content%}
-<html>
+<div id="wrapper">
 	<div id="main">
-		<link
-			rel="stylesheet"
-			href="{{ url_for('static', filename='css/style.css') }}"
-		/>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 		<!-- One -->
 		<section id="one">
 			<div class="inner">
@@ -13,12 +10,12 @@ content%}
 					<h1>This is Bart</h1>
 					<div style="display: flex; align-items: center;">
 						<a href="/tryBart" class="button primary fit">Try the Model</a>
-						<a href="/tryBartError" class="button primary fit" style="margin-left: 5%">Try Error Injection</a>
+						<a href="/tryBartError" class="button primary fit" style="margin-left: 5%">Try Error
+							Injection</a>
+						<a href="/tryBartSingle" class="button primary fit" style="margin-left: 5%">Try Bit Floppa</a>
 					</div>
 				</header>
-				<span class="image main"
-					><img src="static/images/artificial-intelligence.webp" alt=""
-				/></span>
+				<span class="image main"><img src="static/images/artificial-intelligence.webp" alt="" /></span>
 				<p>Choose a model name for more information about it</p>
 				<!-- Dropdown -->
 				<!--<div class="dropdown mt-3">
@@ -28,18 +25,12 @@ content%}
 							</button>
 						</div> -->
 				<div class="dropdown">
-					<link
-						href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+					<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
 						rel="stylesheet"
 						integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-						crossorigin="anonymous"
-					/>
-					<button
-						class="btn btn-secondary dropdown-toggle"
-						type="button"
-						data-bs-toggle="dropdown"
-						aria-expanded="false"
-					>
+						crossorigin="anonymous" />
+					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
 						--Select Model--
 					</button>
 					<ul class="dropdown-menu">
@@ -50,9 +41,7 @@ content%}
 							<a class="dropdown-item" href="/AboutModel/GPT-3.5">GPT-3.5</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="/AboutModel/Bert-base"
-								>Bert-base</a
-							>
+							<a class="dropdown-item" href="/AboutModel/Bert-base">Bert-base</a>
 						</li>
 						<li><a class="dropdown-item" href="/AboutModel/Bart">Bart</a></li>
 						<li>
@@ -63,10 +52,7 @@ content%}
 						</li>
 					</ul>
 				</div>
-				<link
-					rel="stylesheet"
-					href="{{ url_for('static', filename='css/style.css') }}"
-				/>
+				<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 			</div>
 		</section>
 		<!-- Main -->
@@ -169,7 +155,8 @@ content%}
 		<h4>General Data</h4>
 		<p>Number of Parameters: 139M</p>
 		<p>Model Size: 2.5 GB</p>
-	</body>
+		</body>
 	</div>
-</html>
+
+</div>
 {% endblock %}

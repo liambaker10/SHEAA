@@ -9,7 +9,6 @@ tryBartError = Blueprint("tryBartError", __name__)
 @tryBartError.route("/tryBartError")
 def tryModel():
     option_values = [
-        "attn.weight",
         "fc1.weight",
         "fc2.weight",
         "layer_norm.weight",
@@ -17,9 +16,9 @@ def tryModel():
         "v_proj.weight",
         "q_proj.weight",
         "out_proj.weight",
-        "attn.bias",
         "fc1.bias",
         "fc2.bias",
+        "layer_norm.bias",
         "k_proj.bias",
         "v_proj.bias",
         "q_proj.bias",

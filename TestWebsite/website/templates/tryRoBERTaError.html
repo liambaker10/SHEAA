@@ -19,11 +19,12 @@
 			crossorigin="anonymous" />
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 	</head>
 
 	<body>
 		<div class="container-fluid h-100">
-			<div class="row justify-content-center h-100">
+			<div class="rowChat justify-content-center h-100">
 				<div class="col-md-8 col-xl-6 chat">
 					<div class="card">
 						<div class="card-header msg_head">
@@ -34,7 +35,7 @@
 									<span class="online_icon"></span>
 								</div>
 								<div class="user_info">
-									<span color="blue">&nbsp RoBERTa Error Injection</span>
+									<span color="blue">&nbsp RoBERTa Injection</span>
 									<p color="dark">&nbsp Enter a Prompt:</p>
 								</div>
 							</div>
@@ -53,78 +54,36 @@
 								</div>
 
 						</div>
+
 						<!-- Sliders -->
-
-						<style>
-							.slider-container {
-								display: flex;
-								align-items: center;
-							}
-
-							.slider-value {
-								margin-left: 10px;
-								color: black;
-							}
-
-							.custom-range {
-								width: 200px;
-								margin-right: 10px;
-							}
-
-							.custom-range::-webkit-slider-runnable-track {
-								background-color: #ccc;
-								height: 4px;
-							}
-
-							.custom-range::-moz-range-track {
-								background-color: #ccc;
-								height: 4px;
-							}
-
-							.custom-range::-ms-track {
-								background-color: #ccc;
-								height: 4px;
-							}
-
-							.custom-range::-webkit-slider-thumb {
-								background-color: #007bff;
-								border: none;
-								height: 14px;
-								width: 14px;
-								border-radius: 50%;
-								margin-top: -5px;
-							}
-
-							.custom-range::-moz-range-thumb {
-								background-color: #007bff;
-								border: none;
-								height: 14px;
-								width: 14px;
-								border-radius: 50%;
-								margin-top: -5px;
-							}
-
-							.custom-range::-ms-thumb {
-								background-color: #007bff;
-								border: none;
-								height: 14px;
-								width: 14px;
-								border-radius: 50%;
-								margin-top: -5px;
-							}
-						</style>
 						<br>
+						<!-- #Parameters for AlexFunc -->
 						<div class="slider-container">
 							<input type="range" class="custom-range" min="0" max="30" step="1" id="slider1"
 								oninput="updateValue(this.value, 'sliderValue1', '#Parameters')"
 								style="--value: {{ slider_value1 }};" />
 							<span id="sliderValue1" class="slider-value">#Parameters: {{ slider_value1 }}</span>
 						</div>
+						<!-- NewVal for ALexFUnc -->
 						<div class="slider-container">
 							<input type="range" class="custom-range" min="-5" max="5" step="0.1" id="slider2"
 								oninput="updateValue(this.value, 'sliderValue2', 'NewVal')"
 								style="--value: {{ slider_value2 }};" />
 							<span id="sliderValue2" class="slider-value">NewVal: {{ slider_value2 }}</span>
+						</div>
+						<!-- Dropout rate for Satrant Function -->
+						<div class="slider-container">
+							<input type="range" class="custom-range" min="0.00001" max=".1" step="0.0001" id="slider3"
+								oninput="updateValue(this.value, 'sliderValue3', 'DropoutRate')"
+								style="--value: {{ slider_value3 }};" disabled />
+							<span id="sliderValue3" class="slider-value">DropoutRate: {{ slider_value3 }}</span>
+						</div>
+						<!-- scalefactor for Satrant Function -->
+						<div class="slider-container">
+							<input type="range" class="custom-range" min="0" max="1" step="0.1" id="slider4"
+								oninput="updateValue(this.value, 'sliderValue4', 'ScaleFactor')"
+								style="--value: {{ slider_value4 }};" disabled />
+							<span id="sliderValue4" class="slider-value">ScaleFactor: {{ slider_value4 }}</span>
 						</div>
 						<br>
 						<div class="dropdown-container">
@@ -140,6 +99,7 @@
 						<br>
 						</form>
 					</div>
+
 				</div>
 			</div>
 		</div>
@@ -148,11 +108,9 @@
 	<p style="color: white; padding-left: 3%">
 		RoBERTa is a masked language model meaning that it tries to guess what
 		the next word in a sequence is. To use RoBERTa and get a response, the user
-		must enter their input in a specific manner using the "&lt;mask&gt;" keyword.
+		must enter their input in a specific manner using the &lt;mask&gt; keyword.
 		<br />For example:
 		<strong>RoBERTa's favorite color is &lt;mask&gt;</strong>
-	</p>
-
 	</p>
 	<br />
 </div>
@@ -177,17 +135,27 @@
 
 		function toggleSliders(value) {
 			var sliders = $(".custom-range");
+			var slider3 = $("#slider3");
+			var slider4 = $("#slider4");
+
 			if (value === "Alex") {
 				sliders.prop("disabled", false);
 				sliders.closest(".slider-container").removeClass("disabled");
+				slider3.prop("disabled", true);
+				slider3.closest(".slider-container").addClass("disabled");
+				slider4.prop("disabled", true);
+				slider4.closest(".slider-container").addClass("disabled");
 			} else {
 				sliders.prop("disabled", true);
 				sliders.closest(".slider-container").addClass("disabled");
+				slider3.prop("disabled", false);
+				slider3.closest(".slider-container").removeClass("disabled");
+				slider4.prop("disabled", false);
+				slider4.closest(".slider-container").removeClass("disabled");
 			}
 		}
 	});
 </script>
-
 <script>
 	// Send Message
 	$(document).ready(function () {
@@ -195,6 +163,8 @@
 			var rawText = $("#text").val();
 			var sliderValue1 = $("#slider1").val();
 			var sliderValue2 = $("#slider2").val();
+			var sliderValue3 = $("#slider3").val();
+			var sliderValue4 = $("#slider4").val();
 			var selectCategory = $("#selectCategory").val(); // Retrieve the value of select-category
 
 			var userHtml =
@@ -210,7 +180,9 @@
 					msg: rawText,
 					num_parameters: sliderValue1,
 					new_value: sliderValue2,
-					category: selectCategory // Include select-category value in the data object
+					category: selectCategory, // Include select-category value in the data object
+					dropout: sliderValue3,
+					scale: sliderValue4
 				},
 				type: "POST",
 				url: "/tryRoBERTaError/get",
@@ -226,5 +198,6 @@
 		});
 	});
 </script>
+
 
 {% endblock %}
