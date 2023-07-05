@@ -1,49 +1,11 @@
 import torch
 import torch.nn as nn
+
 # import weightdistribution as wd
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
-from flask import Flask, Blueprint, render_template, request, jsonify
-
-tryGPT2error = Blueprint("tryGPT2error", __name__)
 
 
-@tryGPT2error.route("/tryGPT2error")
-def tryModel():
-    return render_template("tryGPT2error.html")
-
-
-@tryGPT2error.route("/tryGPT2error/get", methods=["GET", "POST"])
-def chat():
-    msg = request.form["msg"]
-    number_parameters = request.form["num_parameters"]
-    new_value = request.form["new_value"]
-    num_params = int(number_parameters)
-    input_message = msg
-    new_val = float(new_value)
-
-    modified_text = GPT2ErrorInjector(num_params=num_params, new_val=new_val, input_message)  
-
-    return str(modified_text)
-
-    # return get_chat_response(modified_text, max_len)
-
-
-# def get_chat_response(text, max_length=50):
-#     model_path = "modified_gpt2"
-#     tokenizer_path = "modified_gpt2_tokenizer"
-
-#     model = GPT2LMHeadModel.from_pretrained(model_path)
-#     tokenizer = GPT2Tokenizer.from_pretrained(tokenizer_path)
-
-#     generator = pipeline("text-generation", model="gpt2")
-
-#     output = generator(text, max_length=max_length, num_return_sequences=1)
-
-#     formatted = output[0]["generated_text"]
-#     return formatted
-
-
-def GPT2ErrorInjector(num_params, new_val, input_message):
+def GPT2ErrorInjector(num_params, new_val, input_text):
     def get_parameter_importance(model: nn.Module) -> dict:
         parameter_importance = {}
         for name, parameter in model.named_parameters():
@@ -99,3 +61,10 @@ def GPT2ErrorInjector(num_params, new_val, input_message):
     # Decode and print the generated text
     generated_text = tokenizer.decode(output[0], skip_special_tokens=True)
     return generated_text
+
+
+# GPT2ErrorInjector(1, -1, 'Liam Baker')
+
+
+x = GPT2ErrorInjector(50, -1.0, "Hi, I'm Liam")
+print(x)
