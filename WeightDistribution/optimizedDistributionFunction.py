@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-def plot_weight_distribution(model):
+def plot_weight_distribution(model, pull):
 
     # Create an empty list to store the parameter values
     parameter_values = []
@@ -10,7 +10,7 @@ def plot_weight_distribution(model):
 
     # Iterate through the named parameters of the model
     for name, param in model.named_parameters():
-        if "weight" in name:
+        if pull in name:
             # Reshape the parameter tensor to a 1D tensor
             param_tensor = param.view(-1)
 
