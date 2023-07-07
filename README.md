@@ -32,7 +32,7 @@ Our first method of error injection is [Auto Error Injection](important%20functi
 
 ### Manual Error Injection
 
-The next method of error injection is [Manual Error Injection](important%20funcitons/Manual%20Error%20Injectors/) which takes in a model, the node that you want to attack, scale factor which affects the error injection rate, and dropout rate which affects randomness and introduces another way to prevent over injeciton. This attack works by creating an error mask which takes the size of the tensor of the node that is being attacked, generates a tensor of that size that contains powers of two, uses dropout and scalefactor to introduce randomness, and then injects the errors through XOR. 
+The next method of error injection is [Manual Error Injection](important%20functions/Manual%20Error%20Injectors/) which takes in a model, the node that you want to attack, scale factor which affects the error injection rate, and dropout rate which affects randomness and introduces another way to prevent over injeciton. This attack works by creating an error mask which takes the size of the tensor of the node that is being attacked, generates a tensor of that size that contains powers of two, uses dropout and scalefactor to introduce randomness, and then injects the errors through XOR. 
 
 The benefits of this injector is primarily with its targeting capabilties; you are able to choose indivdual nodes that make up the model and attack them. This lets us isolate nodes and once injected will tell us how signficant they really are. We have not explored the full capabilities of testing this with every node of a model and it may lead to a deeper understanding of how NLPs operate if done. 
 
