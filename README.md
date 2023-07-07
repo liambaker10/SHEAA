@@ -22,7 +22,7 @@ To get started you will need **Placeholder**
 
 ## Error Injection Techniques
 
-All of our error injectors are doing their injection by attacking the indivdual nodes in a given NLP model. In our important folders (SHEAA/important functions) we have starter code for a few models that can help you get going. 
+All of our error injectors are doing their injection by attacking the indivdual nodes in a given NLP model. In our important folders (SHEAA/important functions/) we have starter code for a few models that can help you get going. 
 
 ### Auto Erorr Injection
 
