@@ -26,19 +26,19 @@ All of our error injectors are doing their injection by attacking the indivdual 
 
 ### Auto Erorr Injection
 
-Our first method of error injection is [Auto Error Injection](SHEAA/important functions/Auto Error Injectors) which takes in the number of paramters you want changed and what you want them changed to. It operates by looking for the most important nodes and it then changes the value of the entire tensor to the value that you have given. There are signficant limitaitons with this method one of them is over-injection where the model will almost always spit out gibberish due to the most important nodes being changed. Another important limitation is the lack of variety of outputs, due to the node that is chosen being changed to the same value no matter how often you run it it will give back the same result.  **Alex check**
+Our first method of error injection is [Auto Error Injection](SHEAA/important%20functions/Auto%20Error%20Injectors) which takes in the number of paramters you want changed and what you want them changed to. It operates by looking for the most important nodes and it then changes the value of the entire tensor to the value that you have given. There are signficant limitaitons with this method one of them is over-injection where the model will almost always spit out gibberish due to the most important nodes being changed. Another important limitation is the lack of variety of outputs, due to the node that is chosen being changed to the same value no matter how often you run it it will give back the same result.  **Alex check**
 
 **Introduce node printing and tell the user that they can print nodes to verify error injection** 
 
 ### Manual Error Injection
 
-The next method of error injection is [Manual Error Injection](SHEAA/important funcitons/Manual Error Injectors) which takes in a model, the node that you want to attack, scale factor which affects the error injection rate, and dropout rate which affects randomness and introduces another way to prevent over injeciton. This attack works by creating an error mask which takes the size of the tensor of the node that is being attacked, generates a tensor of that size that contains powers of two, uses dropout and scalefactor to introduce randomness, and then injects the errors through XOR. 
+The next method of error injection is [Manual Error Injection](SHEAA/important%20funcitons/Manual%20Error%20Injectors) which takes in a model, the node that you want to attack, scale factor which affects the error injection rate, and dropout rate which affects randomness and introduces another way to prevent over injeciton. This attack works by creating an error mask which takes the size of the tensor of the node that is being attacked, generates a tensor of that size that contains powers of two, uses dropout and scalefactor to introduce randomness, and then injects the errors through XOR. 
 
 The benefits of this injector is primarily with its targeting capabilties; you are able to choose indivdual nodes that make up the model and attack them. This lets us isolate nodes and once injected will tell us how signficant they really are. We have not explored the full capabilities of testing this with every node of a model and it may lead to a deeper understanding of how NLPs operate if done. 
 
 ### Bit Flip Injection
 
-The final method of error injection is [Bit Flip Injector](SHEAA/important functions/BitInjectors) which takes in the index of the node you want changed (from the total list of nods in the model and how many you want changed. **Alex explain**
+The final method of error injection is [Bit Flip Injector](SHEAA/important%20functions/BitInjectors) which takes in the index of the node you want changed (from the total list of nods in the model and how many you want changed. **Alex explain**
 
 
 ## Usage
