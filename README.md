@@ -26,7 +26,7 @@ All of our error injectors are doing their injection by attacking the indivdual 
 
 ### Auto Erorr Injection
 
-Our first method of error injection is [Auto Error Injection](important%20functions/Auto%20Error%20Injectors/) which takes in the number of paramters you want changed and what you want them changed to. It operates by looking for the most important nodes and it then changes the value of the entire tensor to the value that you have given. There are signficant limitaitons with this method one of them is over-injection where the model will almost always spit out gibberish due to the most important nodes being changed. Another important limitation is the lack of variety of outputs, due to the node that is chosen being changed to the same value no matter how often you run it it will give back the same result.  **Alex check**
+Our first method of error injection is [Auto Error Injection](important%20functions/Auto%20Error%20Injectors/) which takes in the number of paramters you want changed and what you want them changed to. It operates by looking for the most important nodes and it then changes the value of the entire tensor to the value that you have given. There are signficant limitaitons with this method one of them is over-injection where the model will almost always spit out gibberish due to the most important nodes being changed. Another important limitation is the lack of variety of outputs, due to the node that is chosen being changed to the same value no matter how often you run it it will give back the same result.  
 
 **Introduce node printing and tell the user that they can print nodes to verify error injection** 
 
@@ -38,7 +38,9 @@ The benefits of this injector is primarily with its targeting capabilties; you a
 
 ### Bit Flip Injection
 
-The final method of error injection is [Bit Flip Injector](important%20functions/BitInjectors/) which takes in the index of the node you want changed (from the total list of nods in the model and how many you want changed. **Alex explain**
+The final method of error injection is [Bit Flip Injector](important%20functions/BitInjectors/) which takes in the index of the node you want changed (from the total list of nods in the model and how many you want changed. It operates by converting all elements of the tensor specified by the user to binary then flipping the amount of bits specified by the user and converting all elements back to decimal. This new tensor replaces the old tensor in a modified model. 
+
+The main benefit of this injector is its subtlety. When slightly increasing the amount of bits to flip, the output of the model becomes more and more distorted. This is especially helpful in finding the breaking point of the model, where grammar and spelling mistakes become complete gibberish. Another benefit is that you can specifically choose which tensor to alter, allowing the user to see the impact each tensor has. 
 
 
 ## Usage
