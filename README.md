@@ -8,7 +8,7 @@ This repository contains information and resources related to the error injectio
 - [Getting Started](#getting-started) 
 - [Getting Nodes](#Getting-Nodes) 
 - [Error Injection Techniques](#error-injection-techniques) 
-- [Graphing](#Graping) 
+- [Graphing](#Graphing) 
 - [Usage](#usage) 
 - [Examples](#examples) 
 - [Contributing](#contributing) 
