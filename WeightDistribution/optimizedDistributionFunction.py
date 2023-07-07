@@ -44,4 +44,3 @@ def plot_weight_distribution(model):
     plt.show()
 
 
-plot_weight_distribution("facebook/bart-large-cnn")
