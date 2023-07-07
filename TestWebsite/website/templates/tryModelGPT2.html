@@ -78,78 +78,21 @@ content%}
 								</form>
 									<br>
 								<!-- Sliders -->
-								<!-- <form id="sliderSend" class="input-group"> -->
-									<style>
-										.slider-container {
-											display: flex;
-											align-items: center;
-										}
-
-										.slider-value {
-											margin-left: 10px;
-										}
-
-										.custom-range {
-											width: 200px;
-											margin-right: 10px;
-										}
-
-										.custom-range::-webkit-slider-runnable-track {
-											background-color: #ccc;
-											height: 4px;
-										}
-
-										.custom-range::-moz-range-track {
-											background-color: #ccc;
-											height: 4px;
-										}
-
-										.custom-range::-ms-track {
-											background-color: #ccc;
-											height: 4px;
-										}
-
-										.custom-range::-webkit-slider-thumb {
-											background-color: #007bff;
-											border: none;
-											height: 14px;
-											width: 14px;
-											border-radius: 50%;
-											margin-top: -5px;
-										}
-
-										.custom-range::-moz-range-thumb {
-											background-color: #007bff;
-											border: none;
-											height: 14px;
-											width: 14px;
-											border-radius: 50%;
-											margin-top: -5px;
-										}
-
-										.custom-range::-ms-thumb {
-											background-color: #007bff;
-											border: none;
-											height: 14px;
-											width: 14px;
-											border-radius: 50%;
-											margin-top: -5px;
-										}
-									</style>
+								
 									<br>
 									<div class="slider-container">
 										<input
 											type="range"
 											class="custom-range"
-											min="10"
-											max="1000"
-											step="1"
+											min=".1"
+											max="3"
+											step=".01"
 											id="slider1"
-											oninput="updateValue(this.value, 'sliderValue1', 'Seed')"
+											oninput="updateValue(this.value, 'sliderValue1', 'Temperature')"
 											style="--value: {{ slider_value1 }};"
 										/>
 										<span id="sliderValue1" class="slider-value"
-											>Seed: {{ slider_value1 }}</span
+											>Temperature: {{ slider_value1 }}</span
 										>
 									</div>
 									<div class="slider-container">
@@ -174,6 +117,10 @@ content%}
 				</div>
 			</div>					
 		</body>
+		<p style="color: white; padding-left: 3%">
+			Temperature has a default value of 1.0 in the original model. Increasing it causes a more random
+			output, while decreasing it below 1.0 makes the output less random and more repeatable.
+		</p>
 	</div>
 	<!-- Slider -->
 	<script>
@@ -200,7 +147,8 @@ content%}
 	<script>
 		$(document).ready(function () {
 			$("#messageArea").on("submit", function (event) {
-				var sliderValue = $("#slider1").val();
+				var sliderValue1 = $("#slider1").val();
+				var sliderValue2 = $("#slider2").val();
 				var rawText = $("#text").val();
 
 				var userHtml =
@@ -214,7 +162,8 @@ content%}
 				$.ajax({
 					data: {
 						msg: rawText,
-						len: sliderValue // Add the slider value to the data object
+						len: sliderValue2, // Add the slider value to the data object
+						temperature: sliderValue1
 					},
 					type: "POST",
 					url: "/tryGPT2/get",

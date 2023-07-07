@@ -1,7 +1,11 @@
 import torch
 import torch.nn as nn
+<<<<<<< HEAD
 
 # import weightdistribution as wd
+=======
+import weightdistribution as wd
+>>>>>>> e5b30c95f9a4c9a3792d7b8b00035ac07cfd3ad0
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
 
@@ -60,7 +64,12 @@ def GPT2ErrorInjector(num_params, new_val, input_text):
 
     # Decode and print the generated text
     generated_text = tokenizer.decode(output[0], skip_special_tokens=True)
+<<<<<<< HEAD
     return generated_text
+=======
+    print("Generated text:")
+    print(generated_text)
+>>>>>>> e5b30c95f9a4c9a3792d7b8b00035ac07cfd3ad0
 
 
 # GPT2ErrorInjector(1, -1, 'Liam Baker')

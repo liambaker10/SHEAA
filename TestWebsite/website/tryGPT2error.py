@@ -1,15 +1,22 @@
-import torch
-import torch.nn as nn
-# import weightdistribution as wd
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
 from flask import Flask, Blueprint, render_template, request, jsonify
+from transformers import pipeline
+import torch
+
 
 tryGPT2error = Blueprint("tryGPT2error", __name__)
 
 
 @tryGPT2error.route("/tryGPT2error")
 def tryModel():
-    return render_template("tryGPT2error.html")
+    option_values = [
+        "attn.weight",
+        "fc.weight",
+        "proj.weight",
+        "attn.bias",
+        "fc.bias",
+        "proj.bias",
+    ]
+    return render_template("tryGPT2error.html", option_values=option_values)
 
 
 @tryGPT2error.route("/tryGPT2error/get", methods=["GET", "POST"])
@@ -17,33 +24,116 @@ def chat():
     msg = request.form["msg"]
     number_parameters = request.form["num_parameters"]
     new_value = request.form["new_value"]
+    error_injection_type = request.form["category"]
+    dropout_rate = float(request.form["dropout"])
+    scale_factor = float(request.form["scale"])
+
     num_params = int(number_parameters)
     input_message = msg
     new_val = float(new_value)
 
-    modified_text = GPT2ErrorInjector(num_params=num_params, new_val=new_val, input_message)  
+    modified_text = GPT2ErrorInjector(
+        input, num_params=num_params, new_val=new_val
+    )  # Inject errors into input text
 
+    # generated_text = get_chat_response(
+    #     modified_text, max_len
+    # )  # Generate response with error-injected GPT-2
     return str(modified_text)
 
-    # return get_chat_response(modified_text, max_len)
+
+# Satrant's Method
 
 
-# def get_chat_response(text, max_length=50):
-#     model_path = "modified_gpt2"
-#     tokenizer_path = "modified_gpt2_tokenizer"
+def SatrantResponse(prompt, attack, sf=0.3, p=1e-4):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    dtype = (
+        torch.float32
+    )  # Specify the data type you want to retrieve the number of bits for
+    bitwidth = torch.finfo(dtype).bits
 
-#     model = GPT2LMHeadModel.from_pretrained(model_path)
-#     tokenizer = GPT2Tokenizer.from_pretrained(tokenizer_path)
+    def error_map(
+        injectee_shape: tuple,
+        dtype_bitwidth: int,
+        device: torch.device,
+        scale_factor=0.1,
+        p=1e-10,
+    ) -> torch.Tensor:
+        with torch.no_grad():
+            error_map = (
+                2
+                * torch.ones(
+                    (*injectee_shape, dtype_bitwidth), dtype=torch.int, device=device
+                )
+            ) ** torch.arange(0, dtype_bitwidth, dtype=torch.int, device=device).flip(
+                dims=(-1,)
+            ).expand(
+                (*injectee_shape, dtype_bitwidth)
+            )
 
-#     generator = pipeline("text-generation", model="gpt2")
+            filter = (
+                p
+                * nn.functional.dropout(
+                    torch.ones_like(error_map, dtype=torch.float, device=device),
+                    1.0 - p,
+                )
+            ).int()
 
-#     output = generator(text, max_length=max_length, num_return_sequences=1)
+            error_map = (filter * error_map * scale_factor).sum(dim=-1).int()
 
-#     formatted = output[0]["generated_text"]
-#     return formatted
+        return error_map
+
+    def error_inject(model, attack, sf, p):
+        error_maps = {}
+
+        for param_name, param in model.named_parameters():
+            # Options for attacks are here, you can do weights in general bias in general
+            # Then you can do specific kinds of weights/biases attn.weights, proj.weights
+            if attack in param_name:  # or "bias" in param_name:
+                injectee_shape = param.shape
+
+                error_maps[param_name] = error_map(
+                    injectee_shape, bitwidth, device, sf, p
+                )
+
+                error_fin = error_maps[param_name]
+
+                param.data = (param.data.to(torch.int) ^ error_fin).to(torch.float)
+
+    config = GPT2Config.from_pretrained("gpt2")
+
+    config.gradient_checkpointing = True
+
+    gpt2_model = GPT2LMHeadModel.from_pretrained("gpt2")
+
+    state_dict = gpt2_model.state_dict()  # Get the model's state_dict
+    # Create an instance of the modified model
+    modified_model = GPT2LMHeadModel.from_pretrained(
+        "gpt2", config=config, state_dict=state_dict
+    )
+    # Create a tokenizer for the model
+    tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+    # Move the model to the specified device
+    modified_model = modified_model.to(device)
+    # Set the modified model to evaluation mode
+    modified_model.eval()
+
+    # Error injection needs a model which is gpt2 an attack name as a string sf as a scale factor to reduce errors and p to introduce randomness
+    error_inject(modified_model, attack, sf, p)
+
+    input_text = prompt
+    input_ids = tokenizer.encode(input_text, return_tensors="pt").to(device)
+    with torch.no_grad():
+        output = modified_model.generate(
+            input_ids, max_length=25, num_return_sequences=1
+        )
+
+    # Decode and print the generated text
+    generated_text = tokenizer.decode(output[0], skip_special_tokens=True)
+    return generated_text
 
 
-def GPT2ErrorInjector(num_params, new_val, input_message):
+def GPT2ErrorInjector(input_text, num_params, new_val):
     def get_parameter_importance(model: nn.Module) -> dict:
         parameter_importance = {}
         for name, parameter in model.named_parameters():
@@ -64,25 +154,25 @@ def GPT2ErrorInjector(num_params, new_val, input_message):
         if num_params > total_params:
             num_params = total_params
 
-        selected_params = [param[0] for param in sorted_params]
-        modified_params = set()
+        selected_params = [param[0] for param in sorted_params][:num_params]
 
-        for name, parameter in model.named_parameters():
-            if len(modified_params) < num_params and name in selected_params:
-                modified_params.add(name)
-                modified_parameter = modification_func(parameter)
-                parameter.data.copy_(modified_parameter)
-            else:
-                parameter.requires_grad_(False)
+        for parameter_name in selected_params:
+            parameter = dict(model.named_parameters())[parameter_name]
+            modified_parameter = modification_func(parameter)
+            dict(model.named_parameters())[parameter_name].data.copy_(
+                modified_parameter
+            )
 
     # Create the GPT-2 model and tokenizer
     model = GPT2LMHeadModel.from_pretrained("gpt2")
     tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 
     # Specify the number of distinct parameters to modify and the modification function
-    modification_func = lambda parameter: parameter.clone().fill_(
-        new_val
-    )  # Example modification: set the parameter values to 0.0
+    modification_func = (
+        lambda parameter: parameter.clone().fill_(new_val)
+        if torch.rand(1) < 0.5
+        else parameter.clone()
+    )
 
     # Modify a specific number of distinct parameters of highest importance
     modify_parameters(model, num_params, modification_func)
@@ -92,7 +182,7 @@ def GPT2ErrorInjector(num_params, new_val, input_message):
     model = model.to(device)
 
     # Generate text using the modified model
-    input_ids = tokenizer.encode(input_text, return_tensors="pt").to(device)
+    input_ids = tokenizer.encode(input_message, return_tensors="pt").to(device)
     with torch.no_grad():
         output = model.generate(input_ids, max_length=50, num_return_sequences=1)
 
