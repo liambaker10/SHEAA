@@ -1,11 +1,6 @@
-from transformers import AutoModel, AutoConfig
 import matplotlib.pyplot as plt
-import torch
 
-
-def plot_weight_distribution(model_name):
-    config = AutoConfig.from_pretrained(model_name)
-    model = AutoModel.from_pretrained(model_name, config=config)
+def plot_weight_distribution(model):
 
     # Create an empty list to store the parameter values
     parameter_values = []
