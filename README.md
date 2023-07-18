@@ -99,7 +99,7 @@ This is our misgenerated output.
 ```
 Here is a node that is more resistant or is less useful in generation.
 ```python
-#rF.error_inject(model, "model.decoder.layers.11.self_attn.k_proj.weight", .2, .05)
+rF.error_inject(model, "model.decoder.layers.11.self_attn.k_proj.weight", .2, .05)
 ```
 
 We know this because the output is generally normal.
