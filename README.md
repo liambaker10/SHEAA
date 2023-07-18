@@ -98,6 +98,13 @@ Here is a node that is more resistant or is less useful in generation
 We know this because the output is generally normal.
 ![image](https://github.com/liambaker10/SHEAA/assets/123198090/9d03a1a1-f611-40f7-8778-dde0abac1817)
 
+Here is the before graph of the BART model, the weights and biases are being graphed
+![BartGitPhoto](https://github.com/liambaker10/SHEAA/assets/123198090/ecd5783e-4af2-4e8f-8be6-a49a9210218d)
+
+Here is the post error injetion
+![BartGitPost](https://github.com/liambaker10/SHEAA/assets/123198090/7d838c7b-9d6f-4173-ba38-a5032c42794d)
+
+
 
 
 
