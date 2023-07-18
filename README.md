@@ -58,12 +58,26 @@ The main benefit of this injector is its subtlety. When slightly increasing the 
 
 ## Graphing 
 
-Use [Optimized Weight Distribution](WeightDistribution/optimizedDistributionFunction.py/) which pulls weights or biases. Use pull = ‘weight’ to graph weight distribution, pull = ‘bias’ for bias distribution. If graphing both weights and biases, change line 13 to “if ‘weigh’ or ‘bias’ in name:” and remove pull as a parameter of the function. To graph the distribution of a non-error injected model, simply import the model using the transformers library, and call the plot_weight_distribution function with the model and the desired pull as parameters. If graphing a modified model, import this function by using “import optimizedDistributionFunction as wd” and call the function as you would before, except using modified_model as the model parameter.  
+Use [Optimized Weight Distribution](WeightDistribution/optimizedDistributionFunction.py/) which pulls weights or biases. Use pull = ‘weight’ to graph weight distribution, pull = ‘bias’ for bias distribution. If graphing both weights and biases, change line 13 to “if ‘weigh’ or ‘bias’ in name:” and remove pull as a parameter of the function. To graph the distribution of a non-error injected model, simply import the model using the transformers library, and call the plot_weight_distribution function with the model and the desired pull as parameters. If graphing a modified model simply pass the modified_model as the model parameter instead.
+
+Currently it uses bounds of -10 to 10 but this can be changed by editing the Start and Stop on line 37 and 38.
 
 ## Usage 
 
-Provide detailed instructions on how to use the error injection process in practice. Include information about the tools, libraries, or frameworks that are required. Explain the steps involved in setting up the error injection environment, configuring error scenarios, and executing the error injection process. 
+### Import your own models
+1. Install dependencies from requirements.txt
+2. Clone our repo
+4. Choose a model to attack from HuggingFace's transformers library
+6. Import and create an instance of the model to get an unaltered output
+7. Use any of our error injectors prior to output generation
+8. Graph and or use nodePull to see the difference before and after
 
+### Starter Code
+1. Install dependencies from requirements.txt
+2. Clone our repo
+3. Choose any starter code, Manual Error Injection requires you to print the function call to get an output, the others do not.
+4. Inject errors as you see fit to see misgenerated outputs!
+   
 ## Examples 
 
 In this section, provide examples of how the error injection process can be applied in real-world scenarios. Include sample code, configurations, or test cases that demonstrate the effectiveness of error injection for improving system resilience. 
