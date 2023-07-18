@@ -95,7 +95,7 @@ rF.error_inject(model, "model.encoder.layers.11.final_layer_norm.weight", .2, .0
 
 This is our misgenerated output.
 ```python
-Generated text: Alex Fink wears hats. He also has his own Twitter account, which he uses to post photos of himself in a variety of hats and sunglasses. In the last few weeks, he has been in the news for a number of reasons. Among them is his work for CNN.com, where he is a writer.
+#Generated text: Alex Fink wears hats. He also has his own Twitter account, which he uses to post photos of himself in a variety of hats and sunglasses. In the last few weeks, he has been in the news for a number of reasons. Among them is his work for CNN.com, where he is a writer.
 ```
 Here is a node that is more resistant or is less useful in generation.
 ```python
@@ -104,7 +104,7 @@ Here is a node that is more resistant or is less useful in generation.
 
 We know this because the output is generally normal.
 ```python
-Generated text: Alex Fink wears hats. He also has his own Twitter account, which he uses to post photos of himself in a variety of hats and sunglasses. In the last few weeks, he has been in the news for a number of reasons. Among them is his work for CNN.com, where he is a writer.
+#Generated text: Alex Fink wears hats. He also has his own Twitter account, which he uses to post photos of himself in a variety of hats and sunglasses. In the last few weeks, he has been in the news for a number of reasons. Among them is his work for CNN.com, where he is a writer.
 ```
 
 Here is the before graph of the BART model, the weights and biases are being graphed. 
