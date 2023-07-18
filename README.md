@@ -80,7 +80,11 @@ Currently it uses bounds of -10 to 10 but this can be changed by editing the Sta
    
 ## Examples 
 
-In this section, provide examples of how the error injection process can be applied in real-world scenarios. Include sample code, configurations, or test cases that demonstrate the effectiveness of error injection for improving system resilience. 
+### Manual Error Injection
+
+This can be used as a benchmark to see which nodes are more or less resilient against bit flip errors. 
+For Example:
+
 
 ## Contributing 
 
@@ -107,6 +111,8 @@ lbaker10@vilanova.edu
 
 Note that we are undergraduate students, but we are motivated to learn as much as we can! 
 
+Mentor:
+xun.jiao@villanova.edu
 --- 
 
   
