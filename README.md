@@ -96,7 +96,8 @@ Here is a node that is more resistant or is less useful in generation
 ![image](https://github.com/liambaker10/SHEAA/assets/123198090/a09c7ba5-9012-472d-ae81-00109d7c9691)
 
 We know this because the output is generally normal.
-![image](https://github.com/liambaker10/SHEAA/assets/123198090/ad271b86-7956-4c82-a7d8-f42dc86dd421)
+![image](https://github.com/liambaker10/SHEAA/assets/123198090/9d03a1a1-f611-40f7-8778-dde0abac1817)
+
 
 
 
