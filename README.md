@@ -118,7 +118,8 @@ Here is the post error injetion <br>
 ![BartGitPost](https://github.com/liambaker10/SHEAA/assets/123198090/7d838c7b-9d6f-4173-ba38-a5032c42794d)
 
 
-
+This example is just covering Manual Error Injection there are plently of use cases for all of them.
+Experiment with different nodes and all of our injectors to see different results!
 
 
 ## Contributing 
