@@ -86,7 +86,7 @@ This can be used as a benchmark to see which nodes are more or less resilient ag
 For Example:
 Here is our non error injected output with the input "Alex Fink wears hats"
 ```python
-Generated text: Alex Fink wears hats. He also wears a lot of other hats, including a hat on his head. It's just one of many hats he's worn over the years. Click through the gallery to see more photos of him in a variety of hats and other items of clothing.
+#Generated text: Alex Fink wears hats. He also wears a lot of other hats, including a hat on his head. It's just one of many hats he's worn over the years. Click through the gallery to see more photos of him in a variety of hats and other items of clothing.
 ```
 Then I imported the function as rF and I am attacking the model.encoder.layers.11.final_layer_norm.weight of the BART model.
 ```python
