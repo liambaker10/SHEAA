@@ -58,9 +58,7 @@ The main benefit of this injector is its subtlety. When slightly increasing the 
 
 ## Graphing 
 
-Use [Optimized Weight Distribution](WeightDistribution/optimizedDistributionFunction.py/) which pulls weights or biases. Use pull = ‘weight’ to graph weight distribution, pull = ‘bias’ for bias distribution. If graphing both weights and biases, change line 13 to “if ‘weigh’ or ‘bias’ in name:” and remove pull as a parameter of the function. To graph the distribution of a non-error injected model, simply import the model using the transformers library, and call the plot_weight_distribution function with the model and the desired pull as parameters. If graphing a modified model simply pass the modified_model as the model parameter instead.
-
-Currently it uses bounds of -10 to 10 but this can be changed by editing the Start and Stop on line 37 and 38.
+Use [Optimized Weight Distribution](WeightDistribution/optimizedDistributionFunction.py/) which pulls weights or biases. Use pull = ‘weight’ to graph weight distribution, pull = ‘bias’ for bias distribution. If graphing both weights and biases, change line 13 to “if ‘weight’ or ‘bias’ in name:” and remove pull as a parameter of the function. To graph the distribution of a non-error injected model, simply import the model using the transformers library, and call the plot_weight_distribution function with the model and the desired pull as parameters. If graphing a modified model simply pass the modified_model as the model parameter instead. Currently it uses bounds of -10 to 10 but this can be changed by editing the Start and Stop on line 37 and 38.
 
 ## Usage 
 
