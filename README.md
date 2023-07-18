@@ -75,6 +75,8 @@ Use [Optimized Weight Distribution](WeightDistribution/optimizedDistributionFunc
 2. Clone our repo
 3. Choose any starter code, Manual Error Injection requires you to print the function call to get an output, the others do not.
 4. Inject errors as you see fit to see misgenerated outputs!
+5. Graph and or use nodePull to see the difference before and after
+
    
 ## Examples 
 
