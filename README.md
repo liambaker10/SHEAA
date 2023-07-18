@@ -1,4 +1,4 @@
-# Error Injection Process 
+# Simulated Hardware Error Attacks on AI
 
 This repository contains information and resources related to the error injection process. The error injection process is a technique used to intentionally introduce errors or faults into a system for the purpose of evaluating its resilience, robustness, and error handling capabilities. 
 
