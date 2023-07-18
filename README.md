@@ -85,20 +85,29 @@ Currently it uses bounds of -10 to 10 but this can be changed by editing the Sta
 This can be used as a benchmark to see which nodes are more or less resilient against bit flip errors. 
 For Example:
 Here is our non error injected output with the input "Alex Fink wears hats"
-![image](https://github.com/liambaker10/SHEAA/assets/123198090/0c9b4bcc-b50f-427f-88a2-a037db1bf3cf)
+```python
+Generated text: Alex Fink wears hats. He also wears a lot of other hats, including a hat on his head. It's just one of many hats he's worn over the years. Click through the gallery to see more photos of him in a variety of hats and other items of clothing.
+```
 Then I imported the function as rF and I am attacking the model.encoder.layers.11.final_layer_norm.weight of the BART model.
-![image](https://github.com/liambaker10/SHEAA/assets/123198090/6547ef05-bcfb-435c-86fb-5a07df3b059e)
+```python
+rF.error_inject(model, "model.encoder.layers.11.final_layer_norm.weight", .2, .05)
+```
 
-This is our misgenerated output
-![image](https://github.com/liambaker10/SHEAA/assets/123198090/a343ce8a-c6a4-40f7-bc46-ca09cd197f3e)
-
-Here is a node that is more resistant or is less useful in generation
-![image](https://github.com/liambaker10/SHEAA/assets/123198090/a09c7ba5-9012-472d-ae81-00109d7c9691)
+This is our misgenerated output.
+```python
+Generated text: Alex Fink wears hats. He also has his own Twitter account, which he uses to post photos of himself in a variety of hats and sunglasses. In the last few weeks, he has been in the news for a number of reasons. Among them is his work for CNN.com, where he is a writer.
+```
+Here is a node that is more resistant or is less useful in generation.
+```python
+#rF.error_inject(model, "model.decoder.layers.11.self_attn.k_proj.weight", .2, .05)
+```
 
 We know this because the output is generally normal.
-![image](https://github.com/liambaker10/SHEAA/assets/123198090/9d03a1a1-f611-40f7-8778-dde0abac1817)
+```python
+Generated text: Alex Fink wears hats. He also has his own Twitter account, which he uses to post photos of himself in a variety of hats and sunglasses. In the last few weeks, he has been in the news for a number of reasons. Among them is his work for CNN.com, where he is a writer.
+```
 
-Here is the before graph of the BART model, the weights and biases are being graphed 
+Here is the before graph of the BART model, the weights and biases are being graphed. 
 ![BartGitPhoto](https://github.com/liambaker10/SHEAA/assets/123198090/ecd5783e-4af2-4e8f-8be6-a49a9210218d)
 
 
