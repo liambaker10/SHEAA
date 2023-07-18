@@ -83,7 +83,7 @@ Currently it uses bounds of -10 to 10 but this can be changed by editing the Sta
 ### Manual Error Injection
 
 This can be used as a benchmark to see which nodes are more or less resilient against bit flip errors. 
-For Example, here is our non error injected output with the input "Alex Fink wears hats"
+For Example, here is our non error injected output from BART with the input "Alex Fink wears hats"
 ```python
 #Generated text: Alex Fink wears hats. He also wears a lot of other hats, including a hat on his head. It's just one of many hats he's worn over the years. Click through the gallery to see more photos of him in a variety of hats and other items of clothing.
 ```
