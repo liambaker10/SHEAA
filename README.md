@@ -92,6 +92,14 @@ Then I imported the function as rF and I am attacking the model.encoder.layers.1
 This is our misgenerated output
 ![image](https://github.com/liambaker10/SHEAA/assets/123198090/a343ce8a-c6a4-40f7-bc46-ca09cd197f3e)
 
+Here is a node that is more resistant or is less useful in generation
+![image](https://github.com/liambaker10/SHEAA/assets/123198090/a09c7ba5-9012-472d-ae81-00109d7c9691)
+
+We know this because the output is generally normal.
+![image](https://github.com/liambaker10/SHEAA/assets/123198090/ad271b86-7956-4c82-a7d8-f42dc86dd421)
+
+
+
 ## Contributing 
 
 We welcome contributions from the community! If you find any issues or have suggestions for improvement, please fork our project! 
