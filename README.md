@@ -20,7 +20,7 @@ In the field of Natural Language Processing (NLP), ensuring the robustness and r
 
 ## Getting Started 
 
-To get started you will need **Placeholder** 
+To get started you should download our requirements.txt and then clone our git
 
 ## Getting Nodes 
 
