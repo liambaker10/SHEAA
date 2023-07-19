@@ -94,7 +94,7 @@ rF.error_inject(model, "model.encoder.layers.11.final_layer_norm.weight", .2, .0
 
 This is our misgenerated output.
 ```python
-#Generated text: Alex Fink wears hats. He also has his own Twitter account, which he uses to post photos of himself in a variety of hats and sunglasses. In the last few weeks, he has been in the news for a number of reasons. Among them is his work for CNN.com, where he is a writer.
+#Generated text:  Healer Invention Outbreak Reincarn Cipher Artifact Atmosp Collider Forums Mahjong disclaimer Relic Mehran Veter Encyclopedia Laboratories Ritual commenters Hardcore Noticed Lovecraft announ Malf psychiatrists Golem headsets Characters Bleach archaeologists Multiplayer Pastebin Decay Generations persecuted Debate physicists Adapter Qian Experiment Crunch Anthropology Scientist Reps extermin Telescope Virus telescopes Hitman
 ```
 Here is a node that is more resistant or is less useful in generation.
 ```python
