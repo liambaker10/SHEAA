@@ -1,3 +1,6 @@
+import torch
+import torch.nn as nn
+import random
 
 def flip_bits(tensor, num_bits):
         # Convert the tensor to binary
