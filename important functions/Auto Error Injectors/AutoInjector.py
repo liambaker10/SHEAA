@@ -27,3 +27,5 @@ def modify_parameters(model: nn.Module, num_params: int, modification_func: call
                 parameter.requires_grad_(False)
 
 modification_func = lambda parameter: parameter.clone().fill_(new_val)
+
+modify_parameters(model, num_params, modification_func)
