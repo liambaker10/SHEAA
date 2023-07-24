@@ -27,3 +27,5 @@ def modify_parameter(model: nn.Module, param_index: int, num_bits: int):
         parameter = list(model.parameters())[param_index]
         modified_parameter = flip_bits(parameter.data, num_bits)
         parameter.data.copy_(modified_parameter)
+
+modify_parameter(model, param_index, num_bits)
