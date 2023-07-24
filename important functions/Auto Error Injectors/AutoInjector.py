@@ -1,4 +1,5 @@
-
+import torch
+import torch.nn as nn
 
 def get_parameter_importance(model: nn.Module) -> dict:
         parameter_importance = {}
