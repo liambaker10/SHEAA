@@ -28,26 +28,20 @@ def GPT2ErrorInjector(num_params, new_val, input_text):
             else:
                 parameter.requires_grad_(False)
 
-    # Create the GPT-2 model and tokenizer
     model = GPT2LMHeadModel.from_pretrained('gpt2')
     tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
-
-    # Specify the number of distinct parameters to modify and the modification function
+    
     modification_func = lambda parameter: parameter.clone().fill_(new_val)  # Example modification: set the parameter values to 0.0
 
-    # Modify a specific number of distinct parameters of highest importance
     modify_parameters(model, num_params, modification_func)
 
-    # Set the device to run the model on
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = model.to(device)
 
-    # Generate text using the modified model
     input_ids = tokenizer.encode(input_text, return_tensors='pt').to(device)
     with torch.no_grad():
         output = model.generate(input_ids, max_length=50, num_return_sequences=1)
 
-    # Decode and print the generated text
     generated_text = tokenizer.decode(output[0], skip_special_tokens=True)
     print("Generated text:")
     print(generated_text)
