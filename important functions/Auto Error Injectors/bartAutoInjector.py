@@ -4,7 +4,7 @@ def BartErrorInjector(input_text, num_params, new_val):
         for name, parameter in model.named_parameters():
             parameter_importance[name] = torch.std(
                 parameter
-            ).item()  # Calculate importance based on standard deviation
+            ).item()  
         return parameter_importance
 
     def modify_parameters(
@@ -30,32 +30,24 @@ def BartErrorInjector(input_text, num_params, new_val):
             else:
                 parameter.requires_grad_(False)
 
-    # Create the BART model and tokenizer
     model = BartForConditionalGeneration.from_pretrained("facebook/bart-large-cnn")
     tokenizer = BartTokenizer.from_pretrained("facebook/bart-large-cnn")
 
-    # Specify the number of distinct parameters to modify and the modification function
     modification_func = lambda parameter: parameter.clone().fill_(
         new_val
-    )  # Example modification: set the parameter values to a new value
+    ) 
 
-    # Set the device to run the model on
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = model.to(device)  # Move the model to the device
+    model = model.to(device) 
 
-    # Modify a specific number of distinct parameters of highest importance
     modify_parameters(model, num_params, modification_func)
 
-    # Tokenize your input text
     input_ids = tokenizer.encode(input_text, return_tensors="pt")
 
-    # Generate the summary using the BART model
     summary_ids = model.generate(
         input_ids, num_beams=4, max_length=100, early_stopping=True
     )
 
-    # Decode the generated summary
     summary = tokenizer.decode(summary_ids.squeeze(), skip_special_tokens=True)
-
-    # Print the summary
+    
     return str(summary)
