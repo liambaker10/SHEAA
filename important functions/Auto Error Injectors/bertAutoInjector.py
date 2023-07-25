@@ -6,11 +6,9 @@ from transformers import BertForMaskedLM, BertTokenizer
 
 
 def BertErrorInjection(num_params, new_val, input_text):
-    # Create the BERT model and tokenizer
     model = BertForMaskedLM.from_pretrained("bert-base-uncased")
     tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
 
-    # Set the device to run the model on
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = model.to(device)
 
@@ -19,7 +17,7 @@ def BertErrorInjection(num_params, new_val, input_text):
         for name, parameter in model.named_parameters():
             parameter_importance[name] = torch.std(
                 parameter
-            ).item()  # Calculate importance based on standard deviation
+            ).item() 
         return parameter_importance
 
     def modify_parameters(
@@ -43,42 +41,34 @@ def BertErrorInjection(num_params, new_val, input_text):
                 modified_parameter
             )
 
-    # Specify the number of distinct parameters to modify and the modification function
     modification_func = (
         lambda parameter: parameter.clone().fill_(new_val).to(device)
-    )  # Example modification: set the parameter values to a new value
+    ) 
 
-    # Modify a specific number of distinct parameters of highest importance
     modify_parameters(model, num_params, modification_func)
 
-    # Specify the input text with the masked token
     input_tokens = tokenizer.tokenize(input_text)
     masked_index = input_tokens.index("[MASK]")
 
-    # Add special tokens to the input tokens
     input_tokens = ["[CLS]"] + input_tokens + ["[SEP]"]
 
-    # Encode the input text
     input_ids = tokenizer.convert_tokens_to_ids(input_tokens)
     input_ids = torch.tensor(input_ids).unsqueeze(0).to(device)
 
-    # Get the predictions for the masked token
     with torch.no_grad():
         outputs = model(input_ids)
         predictions = outputs.logits
 
-        # Ensure the predictions tensor has the expected shape
         assert (
             predictions.shape[1] >= masked_index + 1
         ), "Masked index is out of bounds."
 
-        # Get the predicted token for the masked position
         predicted_token_index = torch.argmax(
             predictions[0, masked_index + 1]
-        ).item()  # Add 1 to masked_index due to [CLS] token
+        ).item()  
         predicted_token = tokenizer.convert_ids_to_tokens(predicted_token_index)
 
-    # Print the generated word
+
     print("Generated word:")
     print(predicted_token)
 
