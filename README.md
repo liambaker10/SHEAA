@@ -28,11 +28,11 @@ In order to fully understand what nodes make up a given NLP model we came up wit
 
 ### allNodePrint  
 
-allNodePrint prints out any given node of a neural network if it contains any word in the search parameter. This will give you a concatenated view of the tensors. It is recommended that you use general words for search such as “weight” or “bias” to find nodes to target. While you can search for a specific individual node it is highly recommended that you use nodePull instead. 
+`allNodePrint` prints out any given node of a neural network if it contains any word in the search parameter. This will give you a concatenated view of the tensors. It is recommended that you use general words for search such as “weight” or “bias” to find nodes to target. While you can search for a specific individual node it is highly recommended that you use nodePull instead. 
 
 ### nodePull  
 
-nodePull is very similar to allNodePrint except that it is made for printing the entire tensor. The size of the print is solely limited by the size parameter. This function is useful to view a node before and after injection of errors to see changes. It works best in tandem with Manual Error Injection as both can be called on the same individual node (they both take it in as a parameter).  
+`nodePull` is very similar to `allNodePrint` except that it is made for printing the entire tensor. The size of the print is solely limited by the size parameter. This function is useful to view a node before and after injection of errors to see changes. It works best in tandem with Manual Error Injection as both can be called on the same individual node (they both take it in as a parameter).  
 
 ## Error Injection Techniques 
 
@@ -58,7 +58,7 @@ The main benefit of this injector is its subtlety. When slightly increasing the 
 
 ## Graphing 
 
-Use [Optimized Weight Distribution](WeightDistribution/optimizedDistributionFunction.py/) which pulls weights or biases. Use pull = ‘weight’ to graph weight distribution, pull = ‘bias’ for bias distribution. If graphing both weights and biases, change line 13 to “if ‘weight’ or ‘bias’ in name:” and remove pull as a parameter of the function. To graph the distribution of a non-error injected model, simply import the model using the transformers library, and call the plot_weight_distribution function with the model and the desired pull as parameters. If graphing a modified model simply pass the modified_model as the model parameter instead. Currently it uses bounds of -10 to 10 but this can be changed by editing the Start and Stop on line 37 and 38.
+Use [Optimized Weight Distribution](WeightDistribution/optimizedDistributionFunction.py/) which pulls weights or biases. `Use pull = ‘weight’` to graph weight distribution, `pull = ‘bias’` for bias distribution. If graphing both weights and biases, change line 13 to “if ‘weight’ or `‘bias’ in name:”` and remove pull as a parameter of the function. To graph the distribution of a non-error injected model, simply import the model using the transformers library, and call the `plot_weight_distribution` function with the model and the desired pull as parameters. If graphing a modified model simply pass the modified_model as the model parameter instead. Currently it uses bounds of -10 to 10 but this can be changed by editing the Start and Stop on line 37 and 38.
 
 ## Usage 
 
