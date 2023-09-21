@@ -17,6 +17,10 @@ def create_app():
     from .tryBart import tryBart
     from .tryBartError import tryBartError
     from .tryRoBERTaError import tryRoBERTaError
+    from .tryBartSingle import tryBartSingle
+    from .tryBertSingle import tryBertSingle
+    from .tryRobertaSingle import tryRobertaSingle
+    from .tryGPT2Single import tryGPT2Single
 
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(about, url_prefix="/")
@@ -30,5 +34,9 @@ def create_app():
     app.register_blueprint(tryBart, url_prefix="/")
     app.register_blueprint(tryBartError, url_prefix="/")
     app.register_blueprint(tryRoBERTaError, url_prefix="/")
+    app.register_blueprint(tryBartSingle, url_prefix="/")
+    app.register_blueprint(tryBertSingle, url_prefix="/")
+    app.register_blueprint(tryRobertaSingle, url_prefix="/")
+    app.register_blueprint(tryGPT2Single, url_prefix="/")
 
     return app

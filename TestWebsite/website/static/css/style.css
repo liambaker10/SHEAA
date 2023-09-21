@@ -167,6 +167,18 @@ textarea {
 	margin-right: 5%;
 }
 
+/* Custom h3 styling */
+.description {
+	color: white;
+}
+
+.description-hr {
+	border: none;
+	height: 1px;
+	background-color: white;
+	margin-top: 5px;
+}
+
 /* Range Slider */
 input[type="range"] {
 	width: 100%;
@@ -458,6 +470,7 @@ i {
 
 p {
 	margin: 0 0 2em 0;
+	color: white;
 }
 
 h1,
@@ -569,6 +582,11 @@ hr {
 
 hr.major {
 	margin: 3em 0;
+}
+
+hr.chat {
+	padding-left: 3%;
+	padding-right: 3%;
 }
 
 .align-left {
@@ -3661,7 +3679,31 @@ body.is-preload #header.alt {
 	}
 }
 
-@media screen and (max-width: 480px) {
+/* Updates: changed from 480 to 622 and left span on*/
+@media screen and (max-width: 622px) {
+	#header nav a[href="#menu"] {
+		overflow: hidden;
+		padding-right: 0 !important;
+		text-indent: 5em;
+		white-space: nowrap;
+		width: 5em;
+	}
+
+	#header nav a[href="#menu"]:before,
+	#header nav a[href="#menu"]:after {
+		right: 0;
+		width: inherit;
+	}
+
+	#header nav a[href="#menu"]:last-child:before,
+	#header nav a[href="#menu"]:last-child:after {
+		width: 4em;
+		right: 0;
+	}
+}
+
+/* Updates: changed from  480 to*/
+@media screen and (max-width: 580px) {
 	#header .logo span {
 		display: none;
 	}
@@ -3867,10 +3909,12 @@ body.is-preload #banner>.inner {
 
 	#banner h1 {
 		font-size: 2em;
+		padding-left: 10%;
 	}
 
 	#banner>.inner .content {
 		display: block;
+		padding-left: 10%;
 	}
 
 	#banner>.inner .content>* {
@@ -3883,6 +3927,7 @@ body.is-preload #banner>.inner {
 		min-height: 0;
 		max-height: none;
 	}
+
 }
 
 @media screen and (max-width: 480px) {
