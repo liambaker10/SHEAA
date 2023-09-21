@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from transformers import (
     AutoModel,
     AutoConfig,
@@ -13,6 +14,11 @@ def BartErrorInjector(input_text, num_params, new_val):
     def plot_weight_distribution(model):
         # Create an empty list to store the parameter values
         parameter_values = []
+=======
+import matplotlib.pyplot as plt
+
+def plot_weight_distribution(model, pull):
+>>>>>>> e4ec5f24406d1b5397300d90b1a383ed5a86454a
 
         # Create an empty tensor to concatenate the parameters
         concatenated_tensor = None
@@ -23,11 +29,19 @@ def BartErrorInjector(input_text, num_params, new_val):
                 # Reshape the parameter tensor to a 1D tensor
                 param_tensor = param.view(-1)
 
+<<<<<<< HEAD
                 # Concatenate the parameter tensor to the existing tensor
                 if concatenated_tensor is None:
                     concatenated_tensor = param_tensor
                 else:
                     concatenated_tensor = torch.cat((concatenated_tensor, param_tensor))
+=======
+    # Iterate through the named parameters of the model
+    for name, param in model.named_parameters():
+        if pull in name:
+            # Reshape the parameter tensor to a 1D tensor
+            param_tensor = param.view(-1)
+>>>>>>> e4ec5f24406d1b5397300d90b1a383ed5a86454a
 
         # Convert the GPU tensor to a CPU tensor (if necessary)
         concatenated_tensor_cpu = concatenated_tensor.cpu()
@@ -113,4 +127,7 @@ def BartErrorInjector(input_text, num_params, new_val):
     )  # Move the model back to the CPU for plotting
 
 
+<<<<<<< HEAD
 BartErrorInjector("When was Villanova established?", 9, -10.0)
+=======
+>>>>>>> e4ec5f24406d1b5397300d90b1a383ed5a86454a
