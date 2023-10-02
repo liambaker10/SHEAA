@@ -4,6 +4,7 @@ import torch
 import os
 
 # Specify the cache directory
+# Comment out these lines unless you specifically want to change the cache file
 # Choose where huggingface model will be installed
 cache_dir = "D:/Users/seven/Huggingface/cache"
 # Set the TRANSFORMERS_CACHE environment variable
