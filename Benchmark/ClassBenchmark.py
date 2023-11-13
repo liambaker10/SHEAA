@@ -1,4 +1,4 @@
-""" MultiClassBench because it makes use of a separate class for the dataset and a
+""" MultiClassBench: makes use of a separate class for the dataset and a
     separate class for the actual Benchmark """
 import datetime
 import os
@@ -186,11 +186,11 @@ class DebugBenchmark(Benchmark):
 MODEL_NAME = "facebook/bart-large-cnn"
 # Supported Datasets: cnn_dailymail, bookcorpus, and xsum
 DATASET_NAME = "xsum"
-NUM_SAMPLES = 10
+NUM_SAMPLES = 100
 
 # Create dataset instance
-DATASET = Processed_Dataset(DATASET_NAME)
+DATASET = Processed_Dataset(DATASET_NAME, num_samples=NUM_SAMPLES)
 
 # Create benchmark instance and run evaluation
-benchmark = DebugBenchmark(MODEL_NAME, DATASET, batch_size=5)
+benchmark = Benchmark(MODEL_NAME, DATASET, batch_size=5)
 benchmark.run_evaluation()

@@ -6,7 +6,7 @@ import torch
 from rouge_score import rouge_scorer
 import pandas as pd
 import numpy as np
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, AutoModelForCausalLM
 
 
 class Benchmark:
