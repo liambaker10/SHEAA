@@ -5,7 +5,7 @@ import os
 
 # Specify the cache directory
 # Choose where huggingface model will be installed
-cache_dir = "D:/Users/seven/Huggingface/cache"
+cache_dir = "C:\Users\liamb\OneDrive\Research\cache"
 # Set the TRANSFORMERS_CACHE environment variable
 os.environ["TRANSFORMERS_CACHE"] = cache_dir
 
